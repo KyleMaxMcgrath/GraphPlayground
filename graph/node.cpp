@@ -37,7 +37,7 @@ std::string node::getId() {
         }
     }
     char * resultArr = new char[5];
-    snprintf(resultArr, 5, "%c%c%c%c%c", char(idChar1+65), char(idChar2+65), char(idChar3+65), char(idChar4+65), char(idChar5+65));
+    snprintf(resultArr, 6, "%c%c%c%c%c", char(idChar1+65), char(idChar2+65), char(idChar3+65), char(idChar4+65), char(idChar5+65));
     std::string result = std::string(resultArr);
     delete[] resultArr;
     return std::string(result);
