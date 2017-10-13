@@ -1,5 +1,5 @@
 /* 
- * File:   newsimpletest.cpp
+ * File:   test_node_constructor.cpp
  * Author: Kyle McGrath
  *
  * Created on October 13, 2017, 5:27 PM
