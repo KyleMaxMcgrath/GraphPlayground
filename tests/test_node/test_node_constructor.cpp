@@ -19,7 +19,7 @@
 void test1() {
     std::cout << "Test node constructor once." << std::endl;
     node * n = new node(0);
-    if(n->id.compare("BAAA") != 0) {
+    if(n->id.compare("BAAAA") != 0) {
         std::cout << "%TEST_FAILED% time=0 testname=test1 message=constructor failed on first attempt." << std::endl;
     }
     delete n;
