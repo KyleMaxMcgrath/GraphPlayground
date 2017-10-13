@@ -7,6 +7,7 @@
 
 #ifndef NODE_H
 #define NODE_H
+#include <string>
 
 class node {
 public:
@@ -17,7 +18,7 @@ public:
     int value;
     std::string id;
 private:
-    
+    std::string getId();
 };
 
 #endif /* NODE_H */
