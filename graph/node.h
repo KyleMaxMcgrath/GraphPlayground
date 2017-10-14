@@ -18,6 +18,8 @@ public:
     
     static size_t hash(node n);
     static bool equals(node n1, node n2);
+    bool operator==(node other);
+    bool operator!=(node other);
     
     int value;
     std::string id;

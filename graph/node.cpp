@@ -52,6 +52,14 @@ bool node::equals(node n1, node n2) {
     return node::hash(n1) == node::hash(n2);
 }
 
+bool node::operator==(node other) {
+    return node::equals(*this, other);
+}
+
+bool node::operator!=(node other) {
+    return !(*this==other);
+}
+
 node::node(int value) {
     this->value = value;
     this->id = getId();
