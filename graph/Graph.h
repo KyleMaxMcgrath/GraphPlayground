@@ -14,9 +14,10 @@ class Graph {
 public:
     Graph();
     Graph(const Graph& orig);
-private:
+    
     std::vector<node> nodes;
     std::vector<std::pair<node, node>> edges;
+    
 };
 
 #endif /* GRAPH_H */
