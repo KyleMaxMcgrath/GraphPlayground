@@ -43,6 +43,11 @@ string node::getId() {
     return std::string(result);
 }
 
+size_t node::hash(node n) {
+    std::hash<std::string> str_hash;
+    return str_hash(n.id);
+}
+
 node::node(int value) {
     this->value = value;
     this->id = getId();
