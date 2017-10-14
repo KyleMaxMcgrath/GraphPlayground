@@ -22,7 +22,7 @@ using namespace std;
 void test1() {
     cout << "test_node_constructor test1" << endl;
     node * n = new node(0);
-    if(n->id.compare("BAAAA") != 0) {
+    if(n->id != "BAAAA") {
         cout << "%TEST_FAILED% time=0 testname=test1 message=constructor failed on first attempt." << endl;
     }
     delete n;
@@ -34,7 +34,7 @@ void test2() {
     
     for(int i = 0; i < 26*26*26*26*26-1; i++) {
         node * n = new node(0);
-        if(n->id.compare("BAAAA") == 0)
+        if(n->id == "BAAAA")
             cout << "%TEST_FAILED% time=0 testname=test2 message=getId() overflowed prematurely." << endl;
         delete n;
     }
@@ -72,34 +72,34 @@ void test4() {
 int main(int argc, char** argv) {
     chrono::steady_clock clock;
     auto suiteStart = chrono::steady_clock::now();
-    std::cout << "%SUITE_STARTING% test_node_constructor" << std::endl;
-    std::cout << "%SUITE_STARTED%" << std::endl;
+    cout << "%SUITE_STARTING% test_node_constructor" << endl;
+    cout << "%SUITE_STARTED%" << endl;
 
     auto start = chrono::steady_clock::now();
-    std::cout << "%TEST_STARTED% test1 (test_node_constructor)" << std::endl;
+    cout << "%TEST_STARTED% test1 (test_node_constructor)" << endl;
     test1();
     
     auto end = chrono::steady_clock::now();
     chrono::duration<double> dur = chrono::duration_cast<chrono::duration<double>>(end-start);
-    std::cout << "%TEST_FINISHED% time=" << dur.count() << " test1 (test_node_constructor)" << std::endl;
+    cout << "%TEST_FINISHED% time=" << dur.count() << " test1 (test_node_constructor)" << endl;
   //  cout << "%TEST_FINISHED% time=" << dur.count() << " test1" << endl;
 
     start = chrono::steady_clock::now();
-    std::cout << "%TEST_STARTED% test2 (test_node_constructor)" << std::endl;
+    cout << "%TEST_STARTED% test2 (test_node_constructor)" << endl;
     test2();
     end = chrono::steady_clock::now();
     dur = chrono::duration_cast<chrono::duration<double>>(end-start);
     cout << "%TEST_FINISHED% time=" << dur.count() << " test2 (test_node_constructor)" << endl;
     
     start = chrono::steady_clock::now();
-    std::cout << "%TEST_STARTED% test3 (test_node_constructor)" << std::endl;
+    cout << "%TEST_STARTED% test3 (test_node_constructor)" << endl;
     test3();
     end = chrono::steady_clock::now();
     dur = chrono::duration_cast<chrono::duration<double>>(end-start);
     cout << "%TEST_FINISHED% time=" << dur.count() << " test3 (test_node_constructor)" << endl;
     
     start = chrono::steady_clock::now();
-    std::cout << "%TEST_STARTED% test4 (test_node_constructor)" << std::endl;
+    cout << "%TEST_STARTED% test4 (test_node_constructor)" << endl;
     test4();
     end = chrono::steady_clock::now();
     dur = chrono::duration_cast<chrono::duration<double>>(end-start);
