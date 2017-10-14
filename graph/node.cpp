@@ -14,8 +14,9 @@ static int idChar3 = 0;
 static int idChar4 = 0;
 static int idChar5 = 0;
 
+using namespace std;
     
-std::string node::getId() {
+string node::getId() {
     if(++idChar1 > 25) {
         idChar1 %= 26;
         if(++idChar2 > 25) {
