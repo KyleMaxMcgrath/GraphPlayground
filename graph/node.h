@@ -17,6 +17,7 @@ public:
     node(const node& orig);
     
     static size_t hash(node n);
+    static bool equals(node n1, node n2);
     
     int value;
     std::string id;
