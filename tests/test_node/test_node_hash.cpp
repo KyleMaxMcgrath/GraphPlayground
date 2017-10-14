@@ -68,6 +68,36 @@ void test5() {
     }
 }
  
+void test6() {
+    cout << "test_node_hash test6" << endl;
+    node n(1);
+    if(!(n == n))
+        cout << "%TEST_FAILED% testname=test6 (test_node_hash) message=operator== is not reflexive." << endl;
+}
+
+
+void test7() {
+    cout << "test_node_hash test7" << endl;
+    node n1(1);
+    node n2(2);
+    if(n1 == n2)
+        cout << "%TEST_FAILED% testname=test5 (test_node_hash) message=Two distinct nodes are equal." << endl;
+}
+
+void test8() {
+    cout << "test_node_hash test8" << endl;
+    node n(1);
+    if(n != n)
+        cout << "%TEST_FAILED% testname=test8 (test_node_hash) message=operator != is reflexive." << endl;
+}
+
+void test9() {
+    cout << "test_node_hash test9" << endl;
+    node n1(1);
+    node n2(2);
+    if(!(n1 != n2))
+        cout << "%TEST_FAILED% testname=test9 (test_node_hash) message=for two distinct nodes n1, n2 we have that !(n1!=n2)." << endl;
+}
 
 int main(int argc, char** argv) {
     auto clock = chrono::steady_clock();
@@ -110,6 +140,39 @@ int main(int argc, char** argv) {
     end = clock.now();
     dur = chrono::duration<double>(end-start);
     cout << "%TEST_FINISHED% time=" << dur.count() << " test5 (test_node_hash)" << endl;
+
+    
+    start = clock.now();
+    cout << "%TEST_STARTED% test6 (test_node_hash)" << endl;
+    test6();
+    end = clock.now();
+    dur = chrono::duration<double>(end-start);
+    cout << "%TEST_FINISHED% time=" << dur.count() << " test6 (test_node_hash)" << endl;
+
+    
+    
+    start = clock.now();
+    cout << "%TEST_STARTED% test7 (test_node_hash)" << endl;
+    test7();
+    end = clock.now();
+    dur = chrono::duration<double>(end-start);
+    cout << "%TEST_FINISHED% time=" << dur.count() << " test7 (test_node_hash)" << endl;
+
+    
+    start = clock.now();
+    cout << "%TEST_STARTED% test8 (test_node_hash)" << endl;
+    test8();
+    end = clock.now();
+    dur = chrono::duration<double>(end-start);
+    cout << "%TEST_FINISHED% time=" << dur.count() << " test8 (test_node_hash)" << endl;
+
+    
+    start = clock.now();
+    cout << "%TEST_STARTED% test9 (test_node_hash)" << endl;
+    test9();
+    end = clock.now();
+    dur = chrono::duration<double>(end-start);
+    cout << "%TEST_FINISHED% time=" << dur.count() << " test9 (test_node_hash)" << endl;
 
     
     auto suiteEnd = clock.now();
