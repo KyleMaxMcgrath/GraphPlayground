@@ -24,6 +24,8 @@ void test1() {
         node* n1 = new node(2);
         node* n2 = new node(3);
         edge e(n1, n2);
+        if(e.first->value != 2 || e.second->value != 3)
+            cout << "%TEST_FAILED% time=0 testname=test1 message=node constructor did not assign values correctly" <<  endl;
     } catch(exception e) {
         cout << "%TEST_FAILED% time=0 testname=test1 message=node constructor caused error" <<  endl;
         
@@ -38,6 +40,8 @@ void test2() {
         node* n2 = new node(3);
         edge e1(n1, n2);
         edge e2(e1);
+        if(e2.first->value != 2 || e2.second->value != 3)
+            cout << "%TEST_FAILED% time=0 testname=test2 message=node copy constructor did not assign values correctly" <<  endl;
     } catch(exception e) {
         cout << "%TEST_FAILED% time=0 testname=test2 message=node copy constructor caused error" <<  endl;
     }
@@ -51,7 +55,14 @@ void test3() {
         node* n1 = new node(247);
         node* n2 = new node(-29983);
         edge* e1 = new edge(n1, n2);
-        edge* e2 = new edge(e1);
+        edge* e2 = new edge(*e1);
+        
+        if(e1->first->value != 247 || e1->second->value != -29983)
+            cout << "%TEST_FAILED% time=0 testname=test3 message=node constructor did not assign values correctly" <<  endl;
+        if(e2->first->value != 247 || e2->second->value != -29983)
+            cout << "%TEST_FAILED% time=0 testname=test3 message=node copy constructor did not assign values correctly" <<  endl;
+        
+
         delete e1;
         delete e2;
     } catch(exception e) {
@@ -65,6 +76,8 @@ void test4() {
     
     try {
         edge* e1 = new edge(5, -99993);
+        if(e1->first->value != 5 || e1->second->value != -99993)
+            cout << "%TEST_FAILED% time=0 testname=test4 message=convenient node constructor did not assign values correctly" <<  endl;
         delete e1;
     } catch(exception e) {
         cout << "%TEST_FAILED% time=0 testname=test4 message=convenient node constructor caused error" <<  endl;
@@ -76,7 +89,11 @@ void test5() {
     std::cout << "test_edge_constructor test 5" << std::endl;
     
     try {
-        edge* e1 = new edge(5/9, -99993/476);
+        int x = int(5.0/9.0);
+        int y = int(-99993.0/476.0);
+        edge* e1 = new edge(5.0/9.0, -99993.0/476.0);
+        if(e1->first->value != x || e1->second->value != y)
+            cout << "%TEST_FAILED% time=0 testname=test5 message=convenient node constructor did not assign values correctly" <<  endl;
         delete e1;
     } catch(exception e) {
         cout << "%TEST_FAILED% time=0 testname=test5 message=convenient node constructor caused error" <<  endl;
