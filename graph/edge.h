@@ -8,10 +8,11 @@
 #ifndef EDGE_H
 #define EDGE_H
 #include <functional>
+#include "node.h"
 
 class edge {
 public:
-    edge(node n1, node n2);
+    edge(node* n1, node* n2);
     edge(const edge& orig);
     
     node * first;
