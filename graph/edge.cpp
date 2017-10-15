@@ -16,6 +16,11 @@ edge::edge(node* first, node* second) {
     this->second = second;
 }
 
+edge::edge(int first, int second) {
+    this->first = new node(first);
+    this->second = new node(second);
+}
+
 edge::edge(const edge& orig) {
     node* n1 = new node(*orig.first);
     this->first = n1;
