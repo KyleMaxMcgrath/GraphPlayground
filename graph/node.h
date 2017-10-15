@@ -16,10 +16,10 @@ public:
     node(int value);
     node(const node& orig);
     
-    static size_t hash(node n);
-    static bool equals(node n1, node n2);
-    bool operator==(node other);
-    bool operator!=(node other);
+    static size_t hash(const node& n);
+    static bool equals(const node& n1, const node& n2);
+    bool operator==(const node& other);
+    bool operator!=(const node& other);
     
     int value;
     std::string id;
