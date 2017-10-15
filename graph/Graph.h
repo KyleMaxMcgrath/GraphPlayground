@@ -10,17 +10,21 @@
 #include <vector>
 #include <utility>
 #include "node.h"
+#include "edge.h"
 
 class Graph {
 public:
     Graph();
-    Graph(std::vector<node> nodes);
-    Graph(std::vector<std::pair<node, node>> edges);
-    Graph(std::vector<node> nodes, std::vector<std::pair<node, node>> edges);
+    Graph(std::vector<node*>* nodes);
+    Graph(std::vector<edge*>* edges);
+    Graph(std::vector<node*>* nodes, std::vector<edge*>* edges);
     Graph(const Graph& orig);
     
-    std::vector<node> nodes;
-    std::vector<std::pair<node, node>> edges;
+    void addEdge(edge* e);
+    void addNode(node* n);
+    
+    std::vector<node*> nodes;
+    std::vector<edge*> edges;
     
 };
 

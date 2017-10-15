@@ -7,32 +7,51 @@
 
 #include "Graph.h"
 #include <algorithm>
+#include <unordered_set>
 
 using namespace std;
 
 Graph::Graph() {
 }
 
-Graph::Graph(std::vector<node> nodes) {
-    this->nodes = nodes;
+Graph::Graph(std::vector<node*>* nodes) {
+    this->nodes = *nodes;
 }
 
-Graph::Graph(std::vector<std::pair<node, node>> edges) {
+Graph::Graph(std::vector<edge*>* edgesPtr) {
+    typedef decltype(&node::hash) nodeHash;
+    typedef decltype(&node::equals) nodeEq;
+    unordered_set<node*> nodeSet;//(42, &node::hash, &node::equals);
+    
+    vector<edge*> edges = *edgesPtr;
+    
     for(auto it = edges.cbegin(); it != edges.cend(); it++) {
-        if(find(nodes.begin(), nodes.end(), it->first) == nodes.end())
-            this->nodes.push_back(it->first);
-        if(find(nodes.begin(), nodes.end(), it->second) == nodes.end())
-            this->nodes.push_back(it->second);
+        addEdge(*it);
+        if(nodeSet.find(((*it)->first)) == nodeSet.end()) {
+            addNode((*it)->first);
+            nodeSet.insert(((*it)->first));
+        }
+        if(nodeSet.find((*it)->second) == nodeSet.end()) {
+            addNode((*it)->second);
+            nodeSet.insert((*it)->second);
+        }
     }
-    this->edges = edges;
 }
 
-Graph::Graph(std::vector<node> nodes, std::vector<std::pair<node, node>> edges) {
-    this->nodes = nodes;
-    this->edges = edges;
+Graph::Graph(std::vector<node*>* nodes, std::vector<edge*>* edges) {
+    this->nodes = *nodes;
+    this->edges = *edges;
 }
 
 Graph::Graph(const Graph& orig) {
     this->nodes = orig.nodes;
     this->edges = orig.edges;
+}
+
+void Graph::addEdge(edge* e) {
+    this->edges.push_back(e);
+}
+
+void Graph::addNode(node* e) {
+    this->nodes.push_back(e);
 }
