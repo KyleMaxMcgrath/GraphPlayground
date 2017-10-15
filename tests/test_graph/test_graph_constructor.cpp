@@ -76,7 +76,7 @@ void test3() {
             cout << "%TEST_FAILED% time=0 testname=test3 message=constructor failed to correctly add edges " << g.edges.at(i).first.value << "!=" << g.edges.at(i).first.value << " (2)" << endl;
             return;
         }
-        if(g.edges.at(i).first.value != edges.at(i).first.value) {
+        if(g.edges.at(i).second.value != edges.at(i).second.value) {
             cout << "%TEST_FAILED% time=0 testname=test3 message=constructor failed to correctly add edges " << g.edges.at(i).second.value << "!=" << edges.at(i).second.value << " (3)" << endl;
             return;
         }
