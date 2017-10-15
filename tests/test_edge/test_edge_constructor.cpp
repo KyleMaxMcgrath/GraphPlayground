@@ -60,6 +60,30 @@ void test3() {
     
 }
 
+void test4() {
+    std::cout << "test_edge_constructor test 4" << std::endl;
+    
+    try {
+        edge* e1 = new edge(5, -99993);
+        delete e1;
+    } catch(exception e) {
+        cout << "%TEST_FAILED% time=0 testname=test4 message=convenient node constructor caused error" <<  endl;
+    }
+    
+}
+
+void test5() {
+    std::cout << "test_edge_constructor test 5" << std::endl;
+    
+    try {
+        edge* e1 = new edge(5/9, -99993/476);
+        delete e1;
+    } catch(exception e) {
+        cout << "%TEST_FAILED% time=0 testname=test5 message=convenient node constructor caused error" <<  endl;
+    }
+    
+}
+
 int main(int argc, char** argv) {
     
     auto clock = chrono::steady_clock();
@@ -82,6 +106,26 @@ int main(int argc, char** argv) {
     dur = chrono::duration<double>(end-start);
     cout << "%TEST_FINISHED% time=" << dur.count() << " test2 (test_edge_constructor)" << endl;
     
+    start = clock.now();
+    cout << "%TEST_STARTED% test3 (test_edge_constructor)" << endl;
+    test3();
+    end = clock.now();
+    dur = chrono::duration<double>(end-start);
+    cout << "%TEST_FINISHED% time=" << dur.count() << " test3 (test_edge_constructor)" << endl;
+    
+    start = clock.now();
+    cout << "%TEST_STARTED% test4 (test_edge_constructor)" << endl;
+    test4();
+    end = clock.now();
+    dur = chrono::duration<double>(end-start);
+    cout << "%TEST_FINISHED% time=" << dur.count() << " test4 (test_edge_constructor)" << endl;
+    
+    start = clock.now();
+    cout << "%TEST_STARTED% test5 (test_edge_constructor)" << endl;
+    test5();
+    end = clock.now();
+    dur = chrono::duration<double>(end-start);
+    cout << "%TEST_FINISHED% time=" << dur.count() << " test5 (test_edge_constructor)" << endl;
     
     auto suiteEnd = clock.now();
     auto suiteDur = chrono::duration<double>(suiteEnd-suiteStart);
