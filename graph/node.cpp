@@ -16,6 +16,16 @@ static int idChar5 = 0;
 
 using namespace std;
     
+node::node(int value) {
+    this->value = value;
+    this->id = getId();
+}
+
+node::node(const node& orig) {
+    this->value = orig.value;
+    this->id = getId();
+}
+
 string node::getId() {
     if(++idChar1 > 25) {
         idChar1 %= 26;
@@ -58,14 +68,4 @@ bool node::operator==(const node& other) {
 
 bool node::operator!=(const node& other) {
     return !(*this==other);
-}
-
-node::node(int value) {
-    this->value = value;
-    this->id = getId();
-}
-
-node::node(const node& orig) {
-    this->value = orig.value;
-    this->id = getId();
 }
