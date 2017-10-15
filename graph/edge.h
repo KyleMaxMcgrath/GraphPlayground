@@ -14,6 +14,7 @@ class edge {
 public:
     edge(node* n1, node* n2);
     edge(const edge& orig);
+    virtual ~edge();
     
     node * first;
     node * second;
