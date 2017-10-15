@@ -44,6 +44,22 @@ void test2() {
     
 }
 
+void test3() {
+    std::cout << "test_edge_constructor test 3" << std::endl;
+    
+    try {
+        node* n1 = new node(247);
+        node* n2 = new node(-29983);
+        edge* e1 = new edge(n1, n2);
+        edge* e2 = new edge(e1);
+        delete e1;
+        delete e2;
+    } catch(exception e) {
+        cout << "%TEST_FAILED% time=0 testname=test3 message=node copy constructor caused error" <<  endl;
+    }
+    
+}
+
 int main(int argc, char** argv) {
     
     auto clock = chrono::steady_clock();
