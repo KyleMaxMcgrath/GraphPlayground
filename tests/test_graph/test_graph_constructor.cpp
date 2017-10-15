@@ -39,9 +39,9 @@ void test2() {
         g.nodes.push_back(n2);
     }
     if(g.edges.size() != 1000)
-        cout << "%TEST_FAILED%  testname=test2 message=constructor failed to correctly add edges (1)" << endl;
+        cout << "%TEST_FAILED% time=0 testname=test2 message=constructor failed to correctly add edges (1)" << endl;
     if(g.nodes.size() != 2000)
-        cout << "%TEST_FAILED%  testname=test2 message=constructor failed to correctly add nodes (2)" << endl;
+        cout << "%TEST_FAILED% time=0 testname=test2 message=constructor failed to correctly add nodes (2)" << endl;
 
 }
 
@@ -56,29 +56,28 @@ void test3() {
     
     Graph g(edges);
     if(g.nodes.size() != 2000) {
-        cerr << "HEY RIGHT HERE: " << g.nodes.size() << endl << endl << endl;
-        cout << "%TEST_FAILED%  testname=test3 message=constructor failed to correctly add nodes (1)" << endl;
+        cout << "%TEST_FAILED% time=0 testname=test3 message=constructor failed to correctly add nodes (1)" << endl;
         return;
     }
     
     auto it =  g.nodes.cbegin();
     for(int i = 0; i < 1000; i++, it++) {
         if(it->value != i || (++it)->value != 1000+i) {
-            cout << "%TEST_FAILED%  testname=test3 message=constructor failed to correctly add nodes " << it->value << " (2)" << endl;
+            cout << "%TEST_FAILED% time=0 testname=test3 message=constructor failed to correctly add nodes " << it->value << " (2)" << endl;
             return;
         }
 
     }
     
     if(g.edges.size() != 1000)
-        cout << "%TEST_FAILED%  testname=test3 message=constructor failed to correctly add edges (1)" << endl;
+        cout << "%TEST_FAILED% time=0 testname=test3 message=constructor failed to correctly add edges (1)" << endl;
     for(int i = 0; i < 1000; i++) {
         if(g.edges.at(i).first.value != edges.at(i).first.value) {
-            cout << "%TEST_FAILED%  testname=test3 message=constructor failed to correctly add edges " << g.edges.at(i).first.value << "!=" << g.edges.at(i).first.value << " (2)" << endl;
+            cout << "%TEST_FAILED% time=0 testname=test3 message=constructor failed to correctly add edges " << g.edges.at(i).first.value << "!=" << g.edges.at(i).first.value << " (2)" << endl;
             return;
         }
         if(g.edges.at(i).first.value != edges.at(i).first.value) {
-            cout << "%TEST_FAILED%  testname=test3 message=constructor failed to correctly add edges " << g.edges.at(i).second.value << "!=" << edges.at(i).second.value << " (3)" << endl;
+            cout << "%TEST_FAILED% time=0 testname=test3 message=constructor failed to correctly add edges " << g.edges.at(i).second.value << "!=" << edges.at(i).second.value << " (3)" << endl;
             return;
         }
     }

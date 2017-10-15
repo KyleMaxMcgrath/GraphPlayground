@@ -23,7 +23,7 @@ void test1() {
     try {
         node::hash(n1);
     } catch(exception e) {
-        cout << "%TEST_FAILED% testname=test2 (test_node_hash) message=hash does not complete without error" << endl;
+        cout << "%TEST_FAILED% time=0 testname=test2 (test_node_hash) message=hash does not complete without error" << endl;
     }
 }
 
@@ -32,14 +32,14 @@ void test2() {
     node n1(1);
     node n2(2);
     if(node::hash(n1) == node::hash(n2))
-        cout << "%TEST_FAILED% testname=test2 (test_node_hash) message=Two distinct nodes had equal hashes." << endl;
+        cout << "%TEST_FAILED% time=0 testname=test2 (test_node_hash) message=Two distinct nodes had equal hashes." << endl;
 }
 
 void test3() {
     cout << "test_node_hash test3" << endl;
     node n(1);
     if(!node::equals(n, n))
-        cout << "%TEST_FAILED% testname=test3 (test_node_hash) message=node::equals is not reflexive." << endl;
+        cout << "%TEST_FAILED% time=0 testname=test3 (test_node_hash) message=node::equals is not reflexive." << endl;
 }
 
 void test4() {
@@ -47,7 +47,7 @@ void test4() {
     node n1(1);
     node n2(2);
     if(node::equals(n1, n2))
-        cout << "%TEST_FAILED% testname=test4 (test_node_hash) message=node::equals returned true with two distinct nodes." << endl;
+        cout << "%TEST_FAILED% time=0 testname=test4 (test_node_hash) message=node::equals returned true with two distinct nodes." << endl;
 }
 
 void test5() {
@@ -64,7 +64,7 @@ void test5() {
             nodeSet.insert(n);
         }
     } catch(exception e) {
-        cout << "%TEST_FAILED% testname=test5 (test_node_hash) message=Failed to use set without an exception." << endl;
+        cout << "%TEST_FAILED% time=0 testname=test5 (test_node_hash) message=Failed to use set without an exception." << endl;
     }
 }
  
@@ -72,7 +72,7 @@ void test6() {
     cout << "test_node_hash test6" << endl;
     node n(1);
     if(!(n == n))
-        cout << "%TEST_FAILED% testname=test6 (test_node_hash) message=operator== is not reflexive." << endl;
+        cout << "%TEST_FAILED% time=0 testname=test6 (test_node_hash) message=operator== is not reflexive." << endl;
 }
 
 
@@ -81,14 +81,14 @@ void test7() {
     node n1(1);
     node n2(2);
     if(n1 == n2)
-        cout << "%TEST_FAILED% testname=test5 (test_node_hash) message=Two distinct nodes are equal." << endl;
+        cout << "%TEST_FAILED% time=0 testname=test5 (test_node_hash) message=Two distinct nodes are equal." << endl;
 }
 
 void test8() {
     cout << "test_node_hash test8" << endl;
     node n(1);
     if(n != n)
-        cout << "%TEST_FAILED% testname=test8 (test_node_hash) message=operator != is reflexive." << endl;
+        cout << "%TEST_FAILED% time=0 testname=test8 (test_node_hash) message=operator != is reflexive." << endl;
 }
 
 void test9() {
@@ -96,7 +96,7 @@ void test9() {
     node n1(1);
     node n2(2);
     if(!(n1 != n2))
-        cout << "%TEST_FAILED% testname=test9 (test_node_hash) message=for two distinct nodes n1, n2 we have that !(n1!=n2)." << endl;
+        cout << "%TEST_FAILED% time=0 testname=test9 (test_node_hash) message=for two distinct nodes n1, n2 we have that !(n1!=n2)." << endl;
 }
 
 int main(int argc, char** argv) {
