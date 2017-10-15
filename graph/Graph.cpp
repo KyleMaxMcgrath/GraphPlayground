@@ -6,24 +6,20 @@
  */
 
 #include "Graph.h"
-#include <algorithm>
-#include <unordered_set>
 
 using namespace std;
 
 Graph::Graph() {
 }
 
-Graph::Graph(std::vector<node*>* nodes) {
-    this->nodes = *nodes;
+Graph::Graph(std::vector<node*>& nodes) {
+    this->nodes = nodes;
 }
 
-Graph::Graph(std::vector<edge*>* edgesPtr) {
+Graph::Graph(std::vector<edge*>& edges) {
     typedef decltype(&node::hash) nodeHash;
     typedef decltype(&node::equals) nodeEq;
     unordered_set<node*> nodeSet;//(42, &node::hash, &node::equals);
-    
-    vector<edge*> edges = *edgesPtr;
     
     for(auto it = edges.cbegin(); it != edges.cend(); it++) {
         addEdge(*it);
@@ -38,9 +34,9 @@ Graph::Graph(std::vector<edge*>* edgesPtr) {
     }
 }
 
-Graph::Graph(std::vector<node*>* nodes, std::vector<edge*>* edges) {
-    this->nodes = *nodes;
-    this->edges = *edges;
+Graph::Graph(std::vector<node*>& nodes, std::vector<edge*>& edges) {
+    this->nodes = nodes;
+    this->edges = edges;
 }
 
 Graph::Graph(const Graph& orig) {
