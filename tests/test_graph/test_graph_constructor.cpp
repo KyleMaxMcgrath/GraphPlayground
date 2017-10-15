@@ -31,10 +31,10 @@ void test2() {
     std::cout << "test_graph_constructor test 2" << std::endl;
     Graph g;
     for(int i = 0; i < 1000; i++) {
-        node n1(i);
-        node n2(100*i);
-        pair<node, node> p(n1, n2);
-        g.edges.push_back(p);
+        node* n1 = new node(i);
+        node* n2 = new node(100*i);
+        edge* e = new edge(n1, n2);
+        g.edges.push_back(e);
         g.nodes.push_back(n1);
         g.nodes.push_back(n2);
     }
@@ -46,38 +46,41 @@ void test2() {
 }
 
 void test3() {
+    cerr << 1 << endl;
     std::cout << "test_graph_constructor test 3" << std::endl;
-    vector<pair<node, node>> edges;
-    for(int i = 0; i < 1000; i++) {
-        node n1(i);
-        node n2(1000+i);
-        edges.push_back(pair<node, node>(n1, n2));
-    }
+    vector<edge*>* edges = new vector<edge*>();
+    cerr << 2 << endl;
     
+    for(int i = 0; i < 1000; i++) {
+        edge* e = new edge(i, 1000+i);
+        edges->push_back(e);
+    }
+    cerr << 3 << endl;
     Graph g(edges);
     if(g.nodes.size() != 2000) {
-        cout << "%TEST_FAILED% time=0 testname=test3 message=constructor failed to correctly add nodes (1)" << endl;
+        cout << "%TEST_FAILED% time=0 testname=test3 (test_graph_constructor) message=constructor failed to correctly add nodes (1)" << endl;
         return;
     }
-    
+    cerr << 4 << endl;
     auto it =  g.nodes.cbegin();
     for(int i = 0; i < 1000; i++, it++) {
-        if(it->value != i || (++it)->value != 1000+i) {
-            cout << "%TEST_FAILED% time=0 testname=test3 message=constructor failed to correctly add nodes " << it->value << " (2)" << endl;
+        if((*it)->value != i || (*++it)->value != 1000+i) {
+            cout << "%TEST_FAILED% time=0 testname=test3 (test_graph_constructor) message=constructor failed to correctly add nodes " << (*it)->id << " (2)" << endl;
             return;
         }
 
     }
+    cerr << 5 << endl;
     
     if(g.edges.size() != 1000)
-        cout << "%TEST_FAILED% time=0 testname=test3 message=constructor failed to correctly add edges (1)" << endl;
+        cout << "%TEST_FAILED% time=0 testname=test3 (test_graph_constructor) message=constructor failed to correctly add edges (1)" << endl;
     for(int i = 0; i < 1000; i++) {
-        if(g.edges.at(i).first.value != edges.at(i).first.value) {
-            cout << "%TEST_FAILED% time=0 testname=test3 message=constructor failed to correctly add edges " << g.edges.at(i).first.value << "!=" << g.edges.at(i).first.value << " (2)" << endl;
+        if(g.edges.at(i)->first->value != edges->at(i)->first->value) {
+            cout << "%TEST_FAILED% time=0 testname=test3 (test_graph_constructor) message=constructor failed to correctly add edges " << g.edges.at(i)->first->value << "!=" << edges->at(i)->first->value << " (2)" << endl;
             return;
         }
-        if(g.edges.at(i).second.value != edges.at(i).second.value) {
-            cout << "%TEST_FAILED% time=0 testname=test3 message=constructor failed to correctly add edges " << g.edges.at(i).second.value << "!=" << edges.at(i).second.value << " (3)" << endl;
+        if(g.edges.at(i)->second->value != edges->at(i)->second->value) {
+            cout << "%TEST_FAILED% time=0 testname=test3 (test_graph_constructor) message=constructor failed to correctly add edges " << g.edges.at(i)->second->value << "!=" << edges->at(i)->second->value << " (3)" << endl;
             return;
         }
     }
