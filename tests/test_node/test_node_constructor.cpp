@@ -69,6 +69,17 @@ void test4() {
 
 }
 
+void test5() {
+    cout << "test_node_constructor test5" << endl;
+    node n1(2);
+    node n2(n1);
+    if(n2.value != 2)
+        cerr << "%TEST_FAILED% time=0 testname=test5 message=node copy constructor failed to replicate value" << endl;
+    if(n2.id == n1.id)
+        cerr << "%TEST_FAILED% time=0 testname=test5 message=node copy constructor failed to produce unique id" << endl;
+    
+}
+
 int main(int argc, char** argv) {
     chrono::steady_clock clock;
     auto suiteStart = chrono::steady_clock::now();
@@ -103,6 +114,13 @@ int main(int argc, char** argv) {
     end = chrono::steady_clock::now();
     dur = chrono::duration_cast<chrono::duration<double>>(end-start);
     cout << "%TEST_FINISHED% time=" << dur.count() << " test4 (test_node_constructor)" << endl;
+    
+    start = chrono::steady_clock::now();
+    cout << "%TEST_STARTED% test5 (test_node_constructor)" << endl;
+    test5();
+    end = chrono::steady_clock::now();
+    dur = chrono::duration_cast<chrono::duration<double>>(end-start);
+    cout << "%TEST_FINISHED% time=" << dur.count() << " test5 (test_node_constructor)" << endl;
 
     auto suiteEnd = chrono::steady_clock::now();
     dur = chrono::duration_cast<chrono::duration<double>>(suiteEnd-suiteStart);
