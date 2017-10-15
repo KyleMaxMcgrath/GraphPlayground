@@ -66,6 +66,5 @@ node::node(int value) {
 }
 
 node::node(const node& orig) {
-    this->value = orig.value;
-    this->id = getId();
+    node(orig.value);
 }
