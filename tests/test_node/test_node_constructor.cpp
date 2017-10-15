@@ -82,7 +82,6 @@ int main(int argc, char** argv) {
     auto end = chrono::steady_clock::now();
     chrono::duration<double> dur = chrono::duration_cast<chrono::duration<double>>(end-start);
     cout << "%TEST_FINISHED% time=" << dur.count() << " test1 (test_node_constructor)" << endl;
-  //  cout << "%TEST_FINISHED% time=" << dur.count() << " test1" << endl;
 
     start = chrono::steady_clock::now();
     cout << "%TEST_STARTED% test2 (test_node_constructor)" << endl;
@@ -107,7 +106,7 @@ int main(int argc, char** argv) {
 
     auto suiteEnd = chrono::steady_clock::now();
     dur = chrono::duration_cast<chrono::duration<double>>(suiteEnd-suiteStart);
-    cout << "%SUITE_FINISHED% time=" << dur.count() << " << endl";
+    cout << "%SUITE_FINISHED% time=" << dur.count() << endl;
 
     return (EXIT_SUCCESS);
 }
