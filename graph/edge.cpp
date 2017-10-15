@@ -7,6 +7,7 @@
 
 #include "edge.h"
 #include <string>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -16,8 +17,15 @@ edge::edge(node* first, node* second) {
 }
 
 edge::edge(const edge& orig) {
-    this->first = orig.first;
-    this->second = orig.second;
+    node* n1 = new node(*orig.first);
+    this->first = n1;
+    node* n2 = new node(*orig.second);
+    this->second = n2;
+}
+
+edge::~edge() {
+    free(this->first);
+    free(this->second);
 }
 
 size_t edge::hash(edge e) {
