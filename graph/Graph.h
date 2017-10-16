@@ -13,6 +13,11 @@
 #include "edge.h"
 #include <algorithm>
 #include <unordered_set>
+#include <random>
+#include <chrono>
+
+#define MAX_ORDER 1000
+#define MODULUS 12
 
 class Graph {
 public:
@@ -24,6 +29,9 @@ public:
     
     void addEdge(edge* e);
     void addNode(node* n);
+    
+    void connectNode(node* n);
+    static Graph* random();
     
     std::vector<node*> nodes;
     std::vector<edge*> edges;
