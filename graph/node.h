@@ -21,6 +21,8 @@ public:
     bool operator==(const node& other);
     bool operator!=(const node& other);
     
+    static void resetId();
+    
     int value;
     std::string id;
 private:

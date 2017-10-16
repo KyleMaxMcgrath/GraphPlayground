@@ -69,3 +69,11 @@ bool node::operator==(const node& other) {
 bool node::operator!=(const node& other) {
     return !(*this==other);
 }
+
+void node::resetId() {
+    idChar1 = 0;
+    idChar2 = 0;
+    idChar3 = 0;
+    idChar4 = 0;
+    idChar5 = 0;
+}
