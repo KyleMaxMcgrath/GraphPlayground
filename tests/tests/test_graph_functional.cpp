@@ -114,11 +114,11 @@ void test5() {
     
     g.connectNode(n2);
     
-    if(g.nodes.size() > 2)
-        std::cout << "%TEST_FAILED% time=0 testname=test5 (test_graph_functional) message=connected a node that was already connected and the order of the graph increased." << std::endl;
+    if(g.nodes.size() != 2)
+        std::cout << "%TEST_FAILED% time=0 testname=test5 (test_graph_functional) message=connected a node that was already connected and the order of the graph was not equal to two (" << g.nodes.size() << ")." << std::endl;
 
-    if(g.edges.size() > 1)
-        std::cout << "%TEST_FAILED% time=0 testname=test5 (test_graph_functional) message=connected a node that was already connected and the number of edges in the graph increased." << std::endl;
+    if(g.edges.size() != 1)
+        std::cout << "%TEST_FAILED% time=0 testname=test5 (test_graph_functional) message=connected a node that was already connected and the number of edges in the graph was not equal to one (" << g.edges.size() << ")." << std::endl;
 
 }
 
