@@ -17,18 +17,10 @@ Graph::Graph(std::vector<node*>& nodes) {
 }
 
 Graph::Graph(std::vector<edge*>& edges) {
-    unordered_set<node*> nodeSet;//(42, &node::hash, &node::equals);
-    
     for(auto it = edges.cbegin(); it != edges.cend(); it++) {
         addEdge(*it);
-        if(nodeSet.find(((*it)->first)) == nodeSet.end()) {
-            addNode((*it)->first);
-            nodeSet.insert(((*it)->first));
-        }
-        if(nodeSet.find((*it)->second) == nodeSet.end()) {
-            addNode((*it)->second);
-            nodeSet.insert((*it)->second);
-        }
+        addNode((*it)->first);
+        addNode((*it)->second);
     }
 }
 
