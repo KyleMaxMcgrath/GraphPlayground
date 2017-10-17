@@ -34,15 +34,14 @@ void test2() {
         node* n1 = new node(i);
         node* n2 = new node(100*i);
         edge* e = new edge(n1, n2);
-        g.edges.push_back(e);
-        g.nodes.push_back(n1);
-        g.nodes.push_back(n2);
+        g.addEdge(e);
+        g.addNode(n1);
+        g.addNode(n2);
     }
     if(g.edges.size() != 1000)
         cout << "%TEST_FAILED% time=0 testname=test2 message=constructor failed to correctly add edges (1)" << endl;
     if(g.nodes.size() != 2000)
         cout << "%TEST_FAILED% time=0 testname=test2 message=constructor failed to correctly add nodes (2)" << endl;
-
 }
 
 void test3() {
