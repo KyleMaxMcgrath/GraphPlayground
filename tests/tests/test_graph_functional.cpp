@@ -138,6 +138,26 @@ int main(int argc, char** argv) {
     auto end = clock.now();
     auto dur = chrono::duration<double>(end-start);
     cout << "%TEST_FINISHED% time=" << dur.count() << " test1 (test_graph_functional)" << endl;
+    
+    start = clock.now();
+    cout << "%TEST_STARTED% test2 (test_graph_functional)" << endl;
+    test2();
+    end = clock.now();
+    dur = chrono::duration<double>(end-start);
+    cout << "%TEST_FINISHED% time=" << dur.count() << " test2 (test_graph_functional)" << endl;
+    
+    
+    start = clock.now();
+    cout << "%TEST_STARTED% test3 (test_graph_functional)" << endl;
+    test3();
+    end = clock.now();
+    dur = chrono::duration<double>(end-start);
+    cout << "%TEST_FINISHED% time=" << dur.count() << " test3 (test_graph_functional)" << endl;
+    
+    
+    auto suiteEnd = clock.now();
+    auto suiteDur = chrono::duration<double>(suiteEnd-suiteStart);
+    std::cout << "%SUITE_FINISHED% time=" << dur.count() << std::endl;
 
 
     return (EXIT_SUCCESS);
