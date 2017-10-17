@@ -17,19 +17,21 @@ using namespace std;
 
 void test1() {
     std::cout << "test_graph_functional test 1" << std::endl;
-    
     Graph g;
     edge* e = new edge(42, 42);
     
     bool exceptionRaised = false;
     try {
         g.addEdge(e);
-    } catch(exception e) {
-        exceptionRaised = true;
+    } catch(domain_error* e) {
+        std::cout << "%TEST_FAILED% time=0 testname=test1 (test_graph_functional) message=adding edge connecting two nodes not in the graph caused domain_error" << std::endl;
     }
     
-    if(!exceptionRaised)
-        std::cout << "%TEST_FAILED% time=0 testname=test1 (test_graph_functional) message=added an edge to a graph that connects two nodes that were not in the graph." << std::endl;
+    if(g.edges.size() != 1)
+        std::cout << "%TEST_FAILED% time=0 testname=test1 (test_graph_functional) message=failed to add an edge to a graph that connects two nodes that were not in the graph" << std::endl;
+    
+    if(g.nodes.size() != 2)
+        std::cout << "%TEST_FAILED% time=0 testname=test1 (test_graph_functional) message=failed to add nodes of edge to a graph when adding an edge" << std::endl;
     
 }
 
@@ -47,12 +49,15 @@ void test2() {
     bool exceptionRaised = false;
     try {
         g.addEdge(e);
-    } catch(exception e) {
-        exceptionRaised = true;
+    } catch(domain_error* e) {
+        std::cout << "%TEST_FAILED% time=0 testname=test2 (test_graph_functional) message=adding edge connecting one node not in the graph caused domain_error" << std::endl;
     }
     
-    if(!exceptionRaised)
-        std::cout << "%TEST_FAILED% time=0 testname=test2 (test_graph_functional) message=added an edge to a graph that connects one node that was not in the graph to a node in the graph." << std::endl;
+    if(g.edges.size() != 1)
+        std::cout << "%TEST_FAILED% time=0 testname=test2 (test_graph_functional) message=failed to add an edge to a graph that connects two nodes that were not in the graph" << std::endl;
+    
+    if(g.nodes.size() != 2)
+        std::cout << "%TEST_FAILED% time=0 testname=test2 (test_graph_functional) message=failed to add nodes of edge to a graph when adding an edge" << std::endl;
     
 }
 
@@ -110,10 +115,10 @@ void test5() {
     g.connectNode(n2);
     
     if(g.nodes.size() > 2)
-        std::cout << "%TEST_FAILED% time=0 testname=test (test_graph_functional) message=connected a node that was already connected and the order of the graph increased." << std::endl;
+        std::cout << "%TEST_FAILED% time=0 testname=test5 (test_graph_functional) message=connected a node that was already connected and the order of the graph increased." << std::endl;
 
     if(g.edges.size() > 1)
-        std::cout << "%TEST_FAILED% time=0 testname=test (test_graph_functional) message=connected a node that was already connected and the number of edges in the graph increased." << std::endl;
+        std::cout << "%TEST_FAILED% time=0 testname=test5 (test_graph_functional) message=connected a node that was already connected and the number of edges in the graph increased." << std::endl;
 
     delete e;
 }
@@ -147,6 +152,20 @@ int main(int argc, char** argv) {
     end = clock.now();
     dur = chrono::duration<double>(end-start);
     cout << "%TEST_FINISHED% time=" << dur.count() << " test3 (test_graph_functional)" << endl;
+    
+    start = clock.now();
+    cout << "%TEST_STARTED% test4 (test_graph_functional)" << endl;
+    test4();
+    end = clock.now();
+    dur = chrono::duration<double>(end-start);
+    cout << "%TEST_FINISHED% time=" << dur.count() << " test4 (test_graph_functional)" << endl;
+    
+    start = clock.now();
+    cout << "%TEST_STARTED% test5 (test_graph_functional)" << endl;
+    test5();
+    end = clock.now();
+    dur = chrono::duration<double>(end-start);
+    cout << "%TEST_FINISHED% time=" << dur.count() << " test5 (test_graph_functional)" << endl;
     
     
     auto suiteEnd = clock.now();
