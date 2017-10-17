@@ -120,7 +120,6 @@ void test5() {
     if(g.edges.size() > 1)
         std::cout << "%TEST_FAILED% time=0 testname=test5 (test_graph_functional) message=connected a node that was already connected and the number of edges in the graph increased." << std::endl;
 
-    delete e;
 }
 
 int main(int argc, char** argv) {
