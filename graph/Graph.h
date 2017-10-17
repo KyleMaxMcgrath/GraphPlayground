@@ -38,6 +38,8 @@ public:
     std::vector<node*> nodes;
     std::vector<edge*> edges;
     
+    
+private:
     std::unordered_set<std::string> nodeIdSet;
     
 };
