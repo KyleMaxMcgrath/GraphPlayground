@@ -45,7 +45,6 @@ void test2() {
 }
 
 void test3() {
-    cerr << 1 << endl;
     std::cout << "test_graph_constructor test 3" << std::endl;
     vector<edge*> edges;
     
