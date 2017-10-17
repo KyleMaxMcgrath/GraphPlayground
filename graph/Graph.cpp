@@ -54,9 +54,11 @@ Graph::~Graph() {
 }
 
 void Graph::addEdge(edge* e) {
-    addNode(e->first);
-    addNode(e->second);
-    this->edges.push_back(e);
+    if(find(edges.cbegin(), edges.cend(), e) == edges.cend()) {
+        addNode(e->first);
+        addNode(e->second);
+        this->edges.push_back(e);
+    }
 }
 
 void Graph::addNode(node* e) {
@@ -67,6 +69,8 @@ void Graph::addNode(node* e) {
 }
 
 void Graph::connectNode(node* n) {
+    if(nodeIdSet.find(n->id) != nodeIdSet.cend())
+        return;
     
     chrono::high_resolution_clock clock;
     unsigned int seed = clock.now().time_since_epoch().count();
