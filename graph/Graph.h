@@ -26,6 +26,7 @@ public:
     Graph(std::vector<edge*>& edges);
     Graph(std::vector<node*>& nodes, std::vector<edge*>& edges);
     Graph(const Graph& orig);
+    virtual ~Graph();
     
     void addEdge(edge* e);
     void addNode(node* n);

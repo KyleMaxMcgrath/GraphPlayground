@@ -44,6 +44,15 @@ Graph::Graph(const Graph& orig) {
     this->edges = orig.edges;
 }
 
+Graph::~Graph() {
+    for(auto it = nodes.begin(); it != nodes.end(); it++) {
+        free(*it);
+    }
+    for(auto it = edges.begin(); it != edges.end(); it++) {
+        free(*it);
+    }
+}
+
 void Graph::addEdge(edge* e) {
     this->edges.push_back(e);
 }
