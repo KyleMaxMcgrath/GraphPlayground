@@ -48,19 +48,18 @@ void test3() {
     cerr << 1 << endl;
     std::cout << "test_graph_constructor test 3" << std::endl;
     vector<edge*> edges;
-    cerr << 2 << endl;
     
     for(int i = 0; i < 1000; i++) {
         edge* e = new edge(i, 1000+i);
         edges.push_back(e);
     }
-    cerr << 3 << endl;
+
     Graph g(edges);
     if(g.nodes.size() != 2000) {
         cout << "%TEST_FAILED% time=0 testname=test3 (test_graph_constructor) message=constructor failed to correctly add nodes (1)" << endl;
         return;
     }
-    cerr << 4 << endl;
+
     auto it =  g.nodes.cbegin();
     for(int i = 0; i < 1000; i++, it++) {
         if((*it)->value != i || (*++it)->value != 1000+i) {
@@ -69,7 +68,7 @@ void test3() {
         }
 
     }
-    cerr << 5 << endl;
+
     
     if(g.edges.size() != 1000)
         cout << "%TEST_FAILED% time=0 testname=test3 (test_graph_constructor) message=constructor failed to correctly add edges (1)" << endl;
