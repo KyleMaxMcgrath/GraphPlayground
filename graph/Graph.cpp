@@ -17,8 +17,6 @@ Graph::Graph(std::vector<node*>& nodes) {
 }
 
 Graph::Graph(std::vector<edge*>& edges) {
-    typedef decltype(&node::hash) nodeHash;
-    typedef decltype(&node::equals) nodeEq;
     unordered_set<node*> nodeSet;//(42, &node::hash, &node::equals);
     
     for(auto it = edges.cbegin(); it != edges.cend(); it++) {
