@@ -44,7 +44,7 @@ void test2() {
     g.addNode(n1);
     
     node* n2 = new node(42);
-    edge* e = new edge(42, 42);
+    edge* e = new edge(n1, n2);
     
     bool exceptionRaised = false;
     try {
@@ -57,7 +57,7 @@ void test2() {
         std::cout << "%TEST_FAILED% time=0 testname=test2 (test_graph_functional) message=failed to add an edge to a graph that connects two nodes that were not in the graph" << std::endl;
     
     if(g.nodes.size() != 2)
-        std::cout << "%TEST_FAILED% time=0 testname=test2 (test_graph_functional) message=failed to add nodes of edge to a graph when adding an edge" << std::endl;
+        std::cout << "%TEST_FAILED% time=0 testname=test2 (test_graph_functional) message=failed to add nodes of edge correctly to a graph when adding an edge: " << g.nodes.size() << std::endl;
     
 }
 
@@ -122,6 +122,23 @@ void test5() {
 
 }
 
+void test6() {
+    
+    std::cout << "test_graph_functional test 6" << std::endl;
+    
+    Graph g;
+    node* n = new node(42);
+    
+    for(int i = 0; i != 10000; i++)
+        g.addNode(n);
+    
+    if(g.nodes.size() > 1)
+        std::cout << "%TEST_FAILED% time=0 testname=test6 (test_graph_functional) message=added a node more than once" << std::endl;
+
+    
+    
+}
+
 int main(int argc, char** argv) {
     
     auto clock = chrono::steady_clock();
@@ -165,6 +182,13 @@ int main(int argc, char** argv) {
     end = clock.now();
     dur = chrono::duration<double>(end-start);
     cout << "%TEST_FINISHED% time=" << dur.count() << " test5 (test_graph_functional)" << endl;
+    
+    start = clock.now();
+    cout << "%TEST_STARTED% test6 (test_graph_functional)" << endl;
+    test6();
+    end = clock.now();
+    dur = chrono::duration<double>(end-start);
+    cout << "%TEST_FINISHED% time=" << dur.count() << " test6 (test_graph_functional)" << endl;
     
     
     auto suiteEnd = clock.now();
