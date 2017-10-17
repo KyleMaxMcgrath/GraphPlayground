@@ -54,11 +54,16 @@ Graph::~Graph() {
 }
 
 void Graph::addEdge(edge* e) {
+    addNode(e->first);
+    addNode(e->second);
     this->edges.push_back(e);
 }
 
 void Graph::addNode(node* e) {
-    this->nodes.push_back(e);
+    if(nodeIdSet.find(e->id) == nodeIdSet.cend()) {
+        this->nodeIdSet.insert(e->id);
+        this->nodes.push_back(e);
+    }
 }
 
 void Graph::connectNode(node* n) {
@@ -72,7 +77,6 @@ void Graph::connectNode(node* n) {
     int indexOfSecond = nodeSetDistribution(gen);
     edge* e = new edge(n, nodes.at(indexOfSecond));
     addEdge(e);
-    addNode(n);
     
 }
 

@@ -15,6 +15,7 @@
 #include <unordered_set>
 #include <random>
 #include <chrono>
+#include <unordered_set>
 
 #define MAX_ORDER 1000
 #define MODULUS 12
@@ -36,6 +37,8 @@ public:
     
     std::vector<node*> nodes;
     std::vector<edge*> edges;
+    
+    std::unordered_set<std::string> nodeIdSet;
     
 };
 
