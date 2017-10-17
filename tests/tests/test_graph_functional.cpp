@@ -72,8 +72,6 @@ void test3() {
     if(g.edges.size() != 1)
         std::cout << "%TEST_FAILED% time=0 testname=test3 (test_graph_functional) message=used connectNode() to create an edge between a node not on the graph and a node in the graph, but the size of the edge set did not increase." << std::endl;
 
-    free(n1);
-    free(n2);
     
 }
 
@@ -96,8 +94,6 @@ void test4() {
     if(g.nodes.size() != 2)
         std::cout << "%TEST_FAILED% time=0 testname=test4 (test_graph_functional) message=used connectNode() to create an edge between two nodes in the graph and the size of the node set increased." << std::endl;
 
-    free(n1);
-    free(n2);
 }
 
 void test5() {
@@ -119,8 +115,6 @@ void test5() {
     if(g.edges.size() > 1)
         std::cout << "%TEST_FAILED% time=0 testname=test (test_graph_functional) message=connected a node that was already connected and the number of edges in the graph increased." << std::endl;
 
-    free(n1);
-    free(n2);
     delete e;
 }
 
