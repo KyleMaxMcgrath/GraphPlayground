@@ -8,7 +8,7 @@
 #ifndef EDGE_H
 #define EDGE_H
 #include <functional>
-#include "node.h"
+#include "../node/node.h"
 
 class edge {
 public:

@@ -9,6 +9,9 @@
 #define NODE_H
 #include <string>
 #include <functional>
+#include <memory>
+
+#define FIRST_ID "AAAAA"
 
 class node {
 public:
@@ -25,8 +28,10 @@ public:
     
     int value;
     std::string id;
+    
 private:
     std::string getId();
+    
 };
 
 #endif /* NODE_H */

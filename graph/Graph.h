@@ -9,8 +9,8 @@
 #define GRAPH_H
 #include <vector>
 #include <utility>
-#include "node.h"
-#include "edge.h"
+#include "node/node.h"
+#include "edge/edge.h"
 #include <algorithm>
 #include <unordered_set>
 #include <random>
@@ -45,4 +45,3 @@ private:
 };
 
 #endif /* GRAPH_H */
-
