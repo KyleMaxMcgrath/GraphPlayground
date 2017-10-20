@@ -11,13 +11,14 @@
 #include <functional>
 #include <memory>
 
-#define FIRST_ID "AAAAA"
+#define FIRST_ID "BAAAA"
 
 class node {
 public:
     
     node(int value);
     node(const node& orig);
+    virtual ~node(){};
     
     static size_t hash(const node& n);
     static bool equals(const node& n1, const node& n2);
