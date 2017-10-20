@@ -9,8 +9,8 @@
 #include <stdlib.h>
 #include <iostream>
 #include <chrono>
-#include "../../graph/node.h"
-#include "../../graph/edge.h"
+#include "../../graph/node/node.h"
+#include "../../graph/edge/edge.h"
 
 /*
  * Simple C++ Test Suite
