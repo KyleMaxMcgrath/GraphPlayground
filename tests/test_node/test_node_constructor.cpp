@@ -10,7 +10,7 @@
 #include <string>
 #include <climits>
 #include <cmath>
-#include "../../graph/node.h"
+#include "../../graph/node/node.h"
 #include <chrono>
 
 /*
