@@ -9,7 +9,10 @@
 #include <unordered_set>
 #include <iostream>
 #include <chrono>
-#include "graph/node.h"
+#include "graph/node/node.h"
+#include <map>
+#include <vector>
+#include <memory>
 
 /*
  * Simple C++ Test Suite
@@ -99,6 +102,41 @@ void test9() {
         cout << "%TEST_FAILED% time=0 testname=test9 (test_node_hash) message=for two distinct nodes n1, n2 we have that !(n1!=n2)." << endl;
 }
 
+void test10() {
+    node::resetId();
+    cout << "test_node_hash test10" << endl;
+    map<string, node*> m;
+    vector<node*> v;
+    for(int i = 0; i < 10000; i++) {
+        node* n = new node(i);
+        m.emplace(n->id, n);
+        v.push_back(n);
+    }
+    for(auto it = v.cbegin(); it != v.cend(); it++) {
+        if(m.at((*it)->id) != *it)
+            cout << "%TEST_FAILED% time=0 testname=test10 (test_node_hash) message=map fails to map strings to nodes correctly." << endl;
+    }
+    for(auto it = v.cbegin(); it != v.cend(); it++)
+        delete *it;
+    
+}
+void test11() {
+    node::resetId();
+    cout << "test_node_hash test11" << endl;
+    map<string, shared_ptr<node>> m;
+    vector<shared_ptr<node>> v;
+    for(int i = 0; i < 10000; i++) {
+        shared_ptr<node> n = make_shared<node>(node(i));
+        m.emplace(n->id, n);
+        v.push_back(n);
+    }
+    for(auto it = v.cbegin(); it != v.cend(); it++) {
+        if(m.at((*it)->id) != *it)
+            cout << "%TEST_FAILED% time=0 testname=test11 (test_node_hash) message=map fails to map strings to nodes correctly." << endl;
+    }
+    
+}
+
 int main(int argc, char** argv) {
     auto clock = chrono::steady_clock();
     
@@ -173,6 +211,20 @@ int main(int argc, char** argv) {
     end = clock.now();
     dur = chrono::duration<double>(end-start);
     cout << "%TEST_FINISHED% time=" << dur.count() << " test9 (test_node_hash)" << endl;
+
+    start = clock.now();
+    cout << "%TEST_STARTED% test10 (test_node_hash)" << endl;
+    test10();
+    end = clock.now();
+    dur = chrono::duration<double>(end-start);
+    cout << "%TEST_FINISHED% time=" << dur.count() << " test10 (test_node_hash)" << endl;
+
+    start = clock.now();
+    cout << "%TEST_STARTED% test11 (test_node_hash)" << endl;
+    test11();
+    end = clock.now();
+    dur = chrono::duration<double>(end-start);
+    cout << "%TEST_FINISHED% time=" << dur.count() << " test11 (test_node_hash)" << endl;
 
     
     auto suiteEnd = clock.now();
