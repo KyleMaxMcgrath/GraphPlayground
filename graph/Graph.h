@@ -16,7 +16,7 @@
 #include <chrono>
 #include <map>
 
-#define MAX_ORDER 1000
+#define MAX_ORDER 70
 #define MODULUS 12
 
 class Graph {
