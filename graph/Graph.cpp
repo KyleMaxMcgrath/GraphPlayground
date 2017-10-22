@@ -46,6 +46,8 @@ void Graph::addEdge(pair<node*, node*>& e) {
     if(edges.find(edgeId) == edges.cend()) {
         addNode(e.first);
         addNode(e.second);
+        e.first->connect(nodes.at(e.second->id));
+        e.second->connect(nodes.at(e.first->id));
         this->edges.insert(edgeId);
     }
 }
