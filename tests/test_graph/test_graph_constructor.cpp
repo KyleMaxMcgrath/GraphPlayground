@@ -116,7 +116,7 @@ int main(int argc, char** argv) {
     
     auto suiteEnd = clock.now();
     auto suiteDur = chrono::duration<double>(suiteEnd-suiteStart);
-    std::cout << "%SUITE_FINISHED% time=" << dur.count() << std::endl;
+    std::cout << "%SUITE_FINISHED% time=" << suiteDur.count() << std::endl;
 
     return (EXIT_SUCCESS);
 }
