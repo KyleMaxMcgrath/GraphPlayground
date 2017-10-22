@@ -13,7 +13,8 @@ Graph::Graph() {
 }
 
 Graph::Graph(std::vector<node*>& nodes) {
-    this->nodes = nodes;
+    for(auto it = nodes.cbegin(); it != nodes.cend(); it++)
+        addNode(*it);
 }
 
 Graph::Graph(std::vector<edge*>& edges) {
@@ -25,8 +26,10 @@ Graph::Graph(std::vector<edge*>& edges) {
 }
 
 Graph::Graph(std::vector<node*>& nodes, std::vector<edge*>& edges) {
-    this->nodes = nodes;
-    this->edges = edges;
+    for(auto it = nodes.cbegin(); it != nodes.cend(); it++)
+        addNode(*it);
+    for(auto it = edges.cbegin(); it != edges.cend(); it++)
+        addEdge(*it);
 }
 
 Graph::Graph(const Graph& orig) {
@@ -34,14 +37,6 @@ Graph::Graph(const Graph& orig) {
     this->edges = orig.edges;
 }
 
-Graph::~Graph() {
-    for(auto it = nodes.begin(); it != nodes.end(); it++) {
-        free(*it);
-    }
-    for(auto it = edges.begin(); it != edges.end(); it++) {
-        free(*it);
-    }
-}
 
 void Graph::addEdge(edge* e) {
     if(find(edges.cbegin(), edges.cend(), e) == edges.cend()) {
@@ -51,15 +46,13 @@ void Graph::addEdge(edge* e) {
     }
 }
 
-void Graph::addNode(node* e) {
-    if(nodeIdSet.find(e->id) == nodeIdSet.cend()) {
-        this->nodeIdSet.insert(e->id);
-        this->nodes.push_back(e);
-    }
+void Graph::addNode(node* n) {
+    if(nodes.find(n->id) == nodes.cend())
+        this->nodes.emplace(n->id, shared_ptr<node>(n));
 }
 
 void Graph::connectNode(node* n) {
-    if(nodeIdSet.find(n->id) != nodeIdSet.cend())
+    if(nodes.find(n->id) != nodes.cend())
         return;
     
     chrono::high_resolution_clock clock;
@@ -69,7 +62,9 @@ void Graph::connectNode(node* n) {
     int max = int(nodes.size()-1);
     uniform_int_distribution<int> nodeSetDistribution(0, max);
     int indexOfSecond = nodeSetDistribution(gen);
-    edge* e = new edge(n, nodes.at(indexOfSecond));
+    auto it = nodes.begin();
+    for(int i = 0; i < indexOfSecond; i++, it++);
+    edge* e = new edge(n, it->second.get());
     addEdge(e);
     
 }

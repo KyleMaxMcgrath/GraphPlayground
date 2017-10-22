@@ -12,10 +12,9 @@
 #include "node/node.h"
 #include "edge/edge.h"
 #include <algorithm>
-#include <unordered_set>
 #include <random>
 #include <chrono>
-#include <unordered_set>
+#include <map>
 
 #define MAX_ORDER 1000
 #define MODULUS 12
@@ -27,7 +26,7 @@ public:
     Graph(std::vector<edge*>& edges);
     Graph(std::vector<node*>& nodes, std::vector<edge*>& edges);
     Graph(const Graph& orig);
-    virtual ~Graph();
+    virtual ~Graph(){};
     
     void addEdge(edge* e);
     void addNode(node* n);
@@ -35,12 +34,8 @@ public:
     void connectNode(node* n);
     static Graph* random();
     
-    std::vector<node*> nodes;
+    std::map<std::string, std::shared_ptr<node>> nodes;
     std::vector<edge*> edges;
-    
-    
-private:
-    std::unordered_set<std::string> nodeIdSet;
     
 };
 
