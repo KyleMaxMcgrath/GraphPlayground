@@ -24,6 +24,10 @@ public:
     static bool equals(const node& n1, const node& n2);
     bool operator==(const node& other);
     bool operator!=(const node& other);
+    bool operator<(const node& other);
+    bool operator>(const node& other);
+    bool operator>=(const node& other);
+    bool operator<=(const node& other);
     
     static void resetId();
     

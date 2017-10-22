@@ -47,7 +47,7 @@ string node::getId() {
         }
     }
     char * resultArr = new char[5];
-    snprintf(resultArr, 6, "%c%c%c%c%c", char(idChar1+65), char(idChar2+65), char(idChar3+65), char(idChar4+65), char(idChar5+65));
+    snprintf(resultArr, 6, "%c%c%c%c%c", char(idChar5+65), char(idChar4+65), char(idChar3+65), char(idChar2+65), char(idChar1+65));
     std::string result = std::string(resultArr);
     delete[] resultArr;
     return std::string(result);
@@ -68,6 +68,22 @@ bool node::operator==(const node& other) {
 
 bool node::operator!=(const node& other) {
     return !(*this==other);
+}
+
+bool node::operator<(const node& other) {
+    return this->id<other.id;
+}
+
+bool node::operator>(const node& other) {
+    return this->id>other.id;
+}
+
+bool node::operator<=(const node& other) {
+    return !(*this>other);
+}
+
+bool node::operator>=(const node& other) {
+    return !(*this<other);
 }
 
 void node::resetId() {
