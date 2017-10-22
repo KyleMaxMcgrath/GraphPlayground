@@ -71,13 +71,10 @@ void test3() {
     
     if(g.edges.size() != 1000)
         cout << "%TEST_FAILED% time=0 testname=test3 (test_graph_constructor) message=constructor failed to correctly add edges (1)" << endl;
-    for(int i = 0; i < 1000; i++) {
-        if(g.edges.at(i)->first->value != edges.at(i)->first->value) {
-            cout << "%TEST_FAILED% time=0 testname=test3 (test_graph_constructor) message=constructor failed to correctly add edges " << g.edges.at(i)->first->value << "!=" << edges.at(i)->first->value << " (2)" << endl;
-            return;
-        }
-        if(g.edges.at(i)->second->value != edges.at(i)->second->value) {
-            cout << "%TEST_FAILED% time=0 testname=test3 (test_graph_constructor) message=constructor failed to correctly add edges " << g.edges.at(i)->second->value << "!=" << edges.at(i)->second->value << " (3)" << endl;
+    int i = 0;
+    for(auto it = g.edges.cbegin(); it != g.edges.cend(); it++, i++) {
+        if(*it == edges.at(i)->first->id + edges.at(i)->second->id) {
+            cout << "%TEST_FAILED% time=0 testname=test3 (test_graph_constructor) message=constructor failed to correctly add edges (2)" << endl;
             return;
         }
     }
