@@ -18,7 +18,7 @@ using namespace std;
 void test1() {
     std::cout << "test_graph_functional test 1" << std::endl;
     Graph g;
-    edge* e = new edge(42, 42);
+    pair<node*, node*> e(new node(42), new node(42));
     
     bool exceptionRaised = false;
     try {
@@ -44,7 +44,7 @@ void test2() {
     g.addNode(n1);
     
     node* n2 = new node(42);
-    edge* e = new edge(n1, n2);
+    pair<node*, node*> e(n1, n2);
     
     bool exceptionRaised = false;
     try {
@@ -109,7 +109,7 @@ void test5() {
     node* n1 = new node(42);
     node* n2 = new node(42);
     
-    edge* e = new edge(n1, n2);
+    pair<node*, node*> e(n1, n2);
     g.addEdge(e);
     
     g.connectNode(n2);
@@ -136,6 +136,57 @@ void test6() {
         std::cout << "%TEST_FAILED% time=0 testname=test6 (test_graph_functional) message=added a node more than once" << std::endl;
 
     
+    
+}
+
+void test7() {
+    
+    std::cout << "test_graph_functional test 7" << std::endl;
+    
+    node::resetId();
+    
+    Graph g;
+
+    node* n0 = new node(3); node* n1 = new node(1); 
+    node* n2 = new node(4); node* n3 = new node(1); 
+    node* n4 = new node(5);
+    pair<node*, node*> e0(n0, n1); pair<node*, node*> e1(n2, n3);
+    pair<node*, node*> e2(n1, n3); pair<node*, node*> e3(n4, n0);
+    
+    g.addEdge(e0); g.addEdge(e1); g.addEdge(e2); g.addEdge(e3);
+    
+    if(n0->degree() != 2) {
+        std::cout << "%TEST_FAILED% time=0 testname=test7 (test_graph_functional) message=graph did not correctly add edges (0)" << std::endl;
+        return;
+    }
+    if(n1->degree() != 2) {
+        std::cout << "%TEST_FAILED% time=0 testname=test7 (test_graph_functional) message=graph did not correctly add edges (1)" << std::endl;
+        return;
+    }
+    if(n2->degree() != 1) {
+        std::cout << "%TEST_FAILED% time=0 testname=test7 (test_graph_functional) message=graph did not correctly add edges (2)" << std::endl;
+        return;
+    }
+    if(n3->degree() != 2) {
+        std::cout << "%TEST_FAILED% time=0 testname=test7 (test_graph_functional) message=graph did not correctly add edges (3)" << std::endl;
+        return;
+    }
+    if(*n0->neighbors.at(0) != *n1 || *n0->neighbors.at(1) != *n4) {
+        std::cout << "%TEST_FAILED% time=0 testname=test7 (test_graph_functional) message=graph did not correctly add edges (4)" << std::endl;    
+        return;   
+    }
+    if(*n1->neighbors.at(0) != *n0 || *n1->neighbors.at(1) != *n3) {
+        std::cout << "%TEST_FAILED% time=0 testname=test7 (test_graph_functional) message=graph did not correctly add edges (5)" << std::endl;
+        return;
+    }
+    if(*n2->neighbors.at(0) != *n3) {
+        std::cout << "%TEST_FAILED% time=0 testname=test7 (test_graph_functional) message=graph did not correctly add edges (6)" << std::endl;
+        return;
+    }
+    if(*n4->neighbors.at(0) != *n0) {
+        std::cout << "%TEST_FAILED% time=0 testname=test7 (test_graph_functional) message=graph did not correctly add edges (7)" << std::endl;
+        return;
+    }
     
 }
 
@@ -189,6 +240,13 @@ int main(int argc, char** argv) {
     end = clock.now();
     dur = chrono::duration<double>(end-start);
     cout << "%TEST_FINISHED% time=" << dur.count() << " test6 (test_graph_functional)" << endl;
+      
+    start = clock.now();
+    cout << "%TEST_STARTED% test7 (test_graph_functional)" << endl;
+    test7();
+    end = clock.now();
+    dur = chrono::duration<double>(end-start);
+    cout << "%TEST_FINISHED% time=" << dur.count() << " test7 (test_graph_functional)" << endl;
     
     
     auto suiteEnd = clock.now();
