@@ -33,7 +33,8 @@ public:
     bool operator>=(const node& other);
     bool operator<=(const node& other);
     
-    void connect(node);
+    void connect(node&);
+    void connect(node*);
     node::size_type degree();
     
     

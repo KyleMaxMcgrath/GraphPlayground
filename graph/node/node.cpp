@@ -86,9 +86,13 @@ bool node::operator>=(const node& other) {
     return !(*this<other);
 }
 
-void node::connect(node n){
+void node::connect(node& n){
     this->neighbors.push_back(std::make_shared<node>(n));
 };
+
+void node::connect(node* n){
+    this->neighbors.push_back(shared_ptr<node>(n));
+}
 
 node::size_type node::degree() {
     return this->neighbors.size();
