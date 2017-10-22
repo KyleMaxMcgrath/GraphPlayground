@@ -9,7 +9,7 @@
 #include <iostream>
 #include "../../graph/Graph.h"
 
-#define NUMBER_OF_TRIALS 100000
+#define NUMBER_OF_TRIALS 10000000
 
 using namespace std;
 
@@ -42,7 +42,7 @@ void test2() {
     mu /= NUMBER_OF_TRIALS;
     
     double expectedValue = .5*MAX_ORDER;
-    if(abs(mu-expectedValue)/expectedValue > .1)
+    if(abs(mu-expectedValue)/expectedValue > .1) {
         cout << "%TEST_FAILED% time=0 testname=test3 (test_graph_generator_stat) message=average order of graph not close to expected value" << endl;
         cout << "Average number of nodes: " <<  mu << endl;
         cout << "Expected value: " << expectedValue << endl << endl << endl;
