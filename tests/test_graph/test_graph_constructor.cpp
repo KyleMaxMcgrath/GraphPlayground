@@ -33,7 +33,7 @@ void test2() {
     for(int i = 0; i < 1000; i++) {
         node* n1 = new node(i);
         node* n2 = new node(100*i);
-        edge* e = new edge(n1, n2);
+        pair<node*, node*> e(n1, n2);
         g.addEdge(e);
         g.addNode(n1);
         g.addNode(n2);
@@ -46,10 +46,10 @@ void test2() {
 
 void test3() {
     std::cout << "test_graph_constructor test 3" << std::endl;
-    vector<edge*> edges;
+    vector<pair<node*, node*>> edges;
     
     for(int i = 0; i < 1000; i++) {
-        edge* e = new edge(i, 1000+i);
+        pair<node*, node*> e(new node(i), new node(1000+i));
         edges.push_back(e);
     }
 
@@ -73,7 +73,7 @@ void test3() {
         cout << "%TEST_FAILED% time=0 testname=test3 (test_graph_constructor) message=constructor failed to correctly add edges (1)" << endl;
     int i = 0;
     for(auto it = g.edges.cbegin(); it != g.edges.cend(); it++, i++) {
-        if(*it == edges.at(i)->first->id + edges.at(i)->second->id) {
+        if(*it == edges.at(i).first->id + edges.at(i).second->id) {
             cout << "%TEST_FAILED% time=0 testname=test3 (test_graph_constructor) message=constructor failed to correctly add edges (2)" << endl;
             return;
         }
