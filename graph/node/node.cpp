@@ -94,6 +94,10 @@ void node::connect(node* n){
     this->neighbors.push_back(shared_ptr<node>(n));
 }
 
+void node::connect(shared_ptr<node> n) {
+    this->neighbors.push_back(n);
+}
+
 node::size_type node::degree() {
     return this->neighbors.size();
 }

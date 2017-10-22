@@ -35,6 +35,7 @@ public:
     
     void connect(node&);
     void connect(node*);
+    void connect(std::shared_ptr<node> n);
     node::size_type degree();
     
     
