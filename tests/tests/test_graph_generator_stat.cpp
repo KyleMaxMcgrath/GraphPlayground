@@ -9,7 +9,7 @@
 #include <iostream>
 #include "../../graph/Graph.h"
 
-#define NUMBER_OF_TRIALS 50
+#define NUMBER_OF_TRIALS 100000
 
 using namespace std;
 
@@ -60,7 +60,7 @@ void test3() {
         node::resetId();
     }
     mu /= NUMBER_OF_TRIALS;
-    double expectedValue = MAX_ORDER*(MAX_ORDER-1)/4.0;
+    double expectedValue = MAX_ORDER*(MAX_ORDER-2)/8.0;
     cerr << "Average number of edges: " <<  mu << endl;
     cerr << "Expected value: " << expectedValue << endl << endl << endl;
     if(abs(mu-expectedValue)/expectedValue > .1)
