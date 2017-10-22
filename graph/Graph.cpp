@@ -39,10 +39,11 @@ Graph::Graph(const Graph& orig) {
 
 
 void Graph::addEdge(edge* e) {
-    if(find(edges.cbegin(), edges.cend(), e) == edges.cend()) {
+    string edgeId = e->first->id+e->second->id;
+    if(edges.find(edgeId) == edges.cend()) {
         addNode(e->first);
         addNode(e->second);
-        this->edges.push_back(e);
+        this->edges.insert(edgeId);
     }
 }
 

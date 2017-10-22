@@ -11,6 +11,7 @@
 #include <utility>
 #include "node/node.h"
 #include "edge/edge.h"
+#include <unordered_set>
 #include <algorithm>
 #include <random>
 #include <chrono>
@@ -35,7 +36,7 @@ public:
     static Graph* random();
     
     std::map<std::string, std::shared_ptr<node>> nodes;
-    std::vector<edge*> edges;
+    std::unordered_set<std::string> edges;
     
 };
 
