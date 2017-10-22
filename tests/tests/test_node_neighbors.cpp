@@ -77,7 +77,7 @@ void test3() {
     std::cout << "test_node_neighbors test 3" << std::endl;
     
     try {
-        node* n(1);
+        node* n = new node(1);
         n->connect(new node(6));
         n->connect(new node(1));
         n->connect(new node(8));
