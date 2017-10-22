@@ -44,7 +44,7 @@ void test2() {
     double expectedValue = .5*MAX_ORDER;
     cerr << "Average number of nodes: " <<  mu << endl;
     cerr << "Expected value: " << expectedValue << endl << endl << endl;
-    if(abs(mu-.5*MAX_ORDER)/(.5*MAX_ORDER) > .1)
+    if(abs(mu-expectedValue)/expectedValue > .1)
         cout << "%TEST_FAILED% time=0 testname=test3 (test_graph_generator_stat) message=average order of graph not close to expected value" << endl;
 
 }
@@ -63,7 +63,7 @@ void test3() {
     double expectedValue = MAX_ORDER*(MAX_ORDER-1)/4.0;
     cerr << "Average number of edges: " <<  mu << endl;
     cerr << "Expected value: " << expectedValue << endl << endl << endl;
-    if(abs(mu-.25*MAX_ORDER*(MAX_ORDER-1))/(.25*MAX_ORDER*(MAX_ORDER-1)) > .1)
+    if(abs(mu-expectedValue)/expectedValue > .1)
         cout << "%TEST_FAILED% time=0 testname=test3 (test_graph_generator_stat) message=average size of graph edge set not close to expected value" << endl;
 
 }
