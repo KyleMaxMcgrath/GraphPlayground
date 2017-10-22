@@ -37,7 +37,7 @@ void test2() {
             cout << "%TEST_FAILED% time=0 testname=test2 (test_graph_generator) message=graph contained more nodes than .5*MAX_ORDER*(MAX_ORDER-1)" << endl;
         
         for(auto it = g->nodes.cbegin(); it != g->nodes.cend(); it++) {
-            if(it->second->value < 0 || it->second->value >= MODULUS)
+            if(it->second->value < 0 || it->second->value >= g->getModulus())
                 cout << "%TEST_FAILED% time=0 testname=test2 (test_graph_generator) message=graph contained nodes whose value was not in Z mod MODULUS" << endl;
         }
         
