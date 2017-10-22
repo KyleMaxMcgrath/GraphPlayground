@@ -12,8 +12,13 @@
 using namespace std;
 
 edge::edge(node* first, node* second) {
-    this->first = first;
-    this->second = second;
+    if(*first<*second) {
+        this->first = first;
+        this->second = second;
+    } else {
+        this->first = second;
+        this->second = first;
+    }
 }
 
 edge::edge(int first, int second) {
