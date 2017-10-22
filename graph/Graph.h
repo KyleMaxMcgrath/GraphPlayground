@@ -10,7 +10,6 @@
 #include <vector>
 #include <utility>
 #include "node/node.h"
-#include "edge/edge.h"
 #include <unordered_set>
 #include <algorithm>
 #include <random>
@@ -24,12 +23,12 @@ class Graph {
 public:
     Graph();
     Graph(std::vector<node*>& nodes);
-    Graph(std::vector<edge*>& edges);
-    Graph(std::vector<node*>& nodes, std::vector<edge*>& edges);
+    Graph(std::vector<std::pair<node*, node*>>& edges);
+    Graph(std::vector<node*>& nodes, std::vector<std::pair<node*, node*>>& edges);
     Graph(const Graph& orig);
     virtual ~Graph(){};
     
-    void addEdge(edge* e);
+    void addEdge(std::pair<node*, node*>& e);
     void addNode(node* n);
     
     void connectNode(node* n);

@@ -5,6 +5,9 @@
  * Created on October 12, 2017, 7:17 PM
  */
 
+// If we want to delete a node, it should be done from the Graph class.
+// Add method that searches for the node and removes all links to it
+
 #include "Graph.h"
 
 using namespace std;
@@ -17,18 +20,18 @@ Graph::Graph(std::vector<node*>& nodes) {
         addNode(*it);
 }
 
-Graph::Graph(std::vector<edge*>& edges) {
-    for(auto it = edges.cbegin(); it != edges.cend(); it++) {
+Graph::Graph(std::vector<pair<node*, node*>>& edges) {
+    for(auto it = edges.begin(); it != edges.end(); it++) {
         addEdge(*it);
-        addNode((*it)->first);
-        addNode((*it)->second);
+        addNode((*it).first);
+        addNode((*it).second);
     }
 }
 
-Graph::Graph(std::vector<node*>& nodes, std::vector<edge*>& edges) {
+Graph::Graph(std::vector<node*>& nodes, std::vector<pair<node*, node*>>& edges) {
     for(auto it = nodes.cbegin(); it != nodes.cend(); it++)
         addNode(*it);
-    for(auto it = edges.cbegin(); it != edges.cend(); it++)
+    for(auto it = edges.begin(); it != edges.end(); it++)
         addEdge(*it);
 }
 
@@ -38,11 +41,11 @@ Graph::Graph(const Graph& orig) {
 }
 
 
-void Graph::addEdge(edge* e) {
-    string edgeId = e->first->id+e->second->id;
+void Graph::addEdge(pair<node*, node*>& e) {
+    string edgeId = e.first->id+e.second->id;
     if(edges.find(edgeId) == edges.cend()) {
-        addNode(e->first);
-        addNode(e->second);
+        addNode(e.first);
+        addNode(e.second);
         this->edges.insert(edgeId);
     }
 }
@@ -65,7 +68,7 @@ void Graph::connectNode(node* n) {
     int indexOfSecond = nodeSetDistribution(gen);
     auto it = nodes.begin();
     for(int i = 0; i < indexOfSecond; i++, it++);
-    edge* e = new edge(n, it->second.get());
+    pair<node*, node*> e(n, it->second.get());
     addEdge(e);
     
 }
