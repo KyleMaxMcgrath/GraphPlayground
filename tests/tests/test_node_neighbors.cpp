@@ -7,7 +7,7 @@
 
 #include <stdlib.h>
 #include <iostream>
-#include "../../graph/graph.h"
+#include "../../graph/Graph.h"
 
 /*
  * Simple C++ Test Suite
@@ -45,7 +45,7 @@ void test2() {
     std::cout << "test_node_neighbors test 2" << std::endl;
     
     int values [] = {1, 6, 1, 8, 0, 3, 3, 9, 8, 8, 7, 4, 9, 8, 9, 5};
-    string id = {"AAAAB", "AAAAC", "AAAAD", "AAAAE",
+    string id [] = {"AAAAB", "AAAAC", "AAAAD", "AAAAE",
                  "AAAAF", "AAAAG", "AAAAH", "AAAAI",
                  "AAAAJ", "AAAAK", "AAAAL", "AAAAM",
                  "AAAAN", "AAAAO", "AAAAP", "AAAAQ",
@@ -63,12 +63,12 @@ void test2() {
     
     auto it = n00.neighbors.cbegin();
     int i = 0;
-    while(it->neighbors.size() != 0) {
-        if(it->value != values[i])
+    while((*it)->neighbors.size() != 0) {
+        if((*it)->value != values[i])
             std::cout << "%TEST_FAILED% time=0 testname=test2 (test_node_neighbors) message=node value incorrect" << std::endl;
-        if(it->id != id[i])
+        if((*it)->id != id[i])
             std::cout << "%TEST_FAILED% time=0 testname=test2 (test_node_neighbors) message=node id incorrect" << std::endl;
-        it = it->neighbors.cbegin();
+        it = (*it)->neighbors.cbegin();
     }
     
 }
