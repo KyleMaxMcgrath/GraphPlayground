@@ -33,6 +33,7 @@ public:
     
     void connectNode(node* n);
     static Graph* random();
+    static int nrand(int n);
     
     std::map<std::string, std::shared_ptr<node>> nodes;
     std::unordered_set<std::string> edges;

@@ -61,13 +61,9 @@ void Graph::connectNode(node* n) {
     if(nodes.find(n->id) != nodes.cend())
         return;
     
-    chrono::high_resolution_clock clock;
-    unsigned int seed = clock.now().time_since_epoch().count();
-    mt19937_64 gen;
-    gen.seed(seed);
     int max = int(nodes.size()-1);
-    uniform_int_distribution<int> nodeSetDistribution(0, max);
-    int indexOfSecond = nodeSetDistribution(gen);
+    int indexOfSecond = nrand(max);
+    
     auto it = nodes.begin();
     for(int i = 0; i < indexOfSecond; i++, it++);
     pair<node*, node*> e(n, it->second.get());
@@ -78,30 +74,32 @@ void Graph::connectNode(node* n) {
 
 Graph* Graph::random() {
     Graph* result = new Graph();
+    
+    int order = nrand(MAX_ORDER);
+    
+    // Get number of edges
+    int edgeSetCardinality = nrand(order*(order-1)/2);
+    
+    
+    node* n = new node(nrand(MODULUS-1));
+    result->addNode(n);
+    
+    for(int i = 0; i < order-1; i++) {
+        node* n = new node(nrand(MODULUS-1));
+        result->connectNode(n);
+    }
+    
+    return result;
+    
+}
+
+int Graph::nrand(int n) {
     chrono::high_resolution_clock clock;
     unsigned int seed = clock.now().time_since_epoch().count();
     mt19937_64 gen;
     gen.seed(seed);
-    
-    // Get order of graph
-    uniform_int_distribution<int> orderDistribution(0, MAX_ORDER);
-    int order = orderDistribution(gen);
-    
-    
-    // Get number of edges
-    uniform_int_distribution<int> edgeSetCardinalityDistribution(0, order*(order-1)/2);
-    int edgeSetCardinality = edgeSetCardinalityDistribution(gen);
-    
-    uniform_int_distribution<int> valueDistribution(0, MODULUS-1);
-    
-    node* n = new node(valueDistribution(gen));
-    result->addNode(n);
-    
-    for(int i = 0; i < order-1; i++) {
-        node* n = new node(valueDistribution(gen));
-        result->connectNode(n);
-    }
-    
+    uniform_int_distribution<int> distribution(0, n);
+    int result = distribution(gen);
     return result;
     
 }
