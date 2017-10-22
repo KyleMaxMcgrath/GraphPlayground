@@ -10,11 +10,15 @@
 #include <string>
 #include <functional>
 #include <memory>
+#include <vector>
 
 #define FIRST_ID "BAAAA"
 
 class node {
+    
 public:
+    
+    typedef std::vector<node>::size_type size_type;
     
     node(int value);
     node(const node& orig);
@@ -29,10 +33,15 @@ public:
     bool operator>=(const node& other);
     bool operator<=(const node& other);
     
+    void connect(node);
+    node::size_type degree();
+    
+    
     static void resetId();
     
     int value;
     std::string id;
+    std::vector<std::shared_ptr<node>> neighbors;
     
 private:
     std::string getId();

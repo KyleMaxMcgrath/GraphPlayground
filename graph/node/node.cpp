@@ -86,6 +86,14 @@ bool node::operator>=(const node& other) {
     return !(*this<other);
 }
 
+void node::connect(node n){
+    this->neighbors.push_back(std::make_shared<node>(n));
+};
+
+node::size_type node::degree() {
+    return this->neighbors.size();
+};
+
 void node::resetId() {
     idChar1 = 0;
     idChar2 = 0;
