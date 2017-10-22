@@ -16,17 +16,20 @@
 #include <chrono>
 #include <map>
 
-#define MAX_ORDER 70
-#define MODULUS 12
+#define MAX_ORDER 10
 
 class Graph {
 public:
-    Graph();
-    Graph(std::vector<node*>& nodes);
-    Graph(std::vector<std::pair<node*, node*>>& edges);
-    Graph(std::vector<node*>& nodes, std::vector<std::pair<node*, node*>>& edges);
+    Graph(int modulus = 12);
+    Graph(std::vector<node*>& nodes, int modulus = 12);
+    Graph(std::vector<std::pair<node*, node*>>& edges, int modulus = 12);
+    Graph(std::vector<node*>& nodes, std::vector<std::pair<node*, node*>>& edges, int modulus = 12);
     Graph(const Graph& orig);
     virtual ~Graph(){};
+    
+    int getModulus() {
+        return this->modulus;
+    };
     
     void addEdge(std::pair<node*, node*>& e);
     void addNode(node* n);
@@ -38,6 +41,8 @@ public:
     std::map<std::string, std::shared_ptr<node>> nodes;
     std::unordered_set<std::string> edges;
     
+private:
+    int modulus;
 };
 
 #endif /* GRAPH_H */

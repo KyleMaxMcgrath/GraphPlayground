@@ -12,15 +12,17 @@
 
 using namespace std;
 
-Graph::Graph() {
+Graph::Graph(int modulus) {
+    this->modulus = modulus;
 }
 
-Graph::Graph(std::vector<node*>& nodes) {
+Graph::Graph(std::vector<node*>& nodes, int modulus) {
     for(auto it = nodes.cbegin(); it != nodes.cend(); it++)
         addNode(*it);
 }
 
-Graph::Graph(std::vector<pair<node*, node*>>& edges) {
+Graph::Graph(std::vector<pair<node*, node*>>& edges, int modulus) {
+    this->modulus = modulus;
     for(auto it = edges.begin(); it != edges.end(); it++) {
         addEdge(*it);
         addNode((*it).first);
@@ -28,7 +30,8 @@ Graph::Graph(std::vector<pair<node*, node*>>& edges) {
     }
 }
 
-Graph::Graph(std::vector<node*>& nodes, std::vector<pair<node*, node*>>& edges) {
+Graph::Graph(std::vector<node*>& nodes, std::vector<pair<node*, node*>>& edges, int modulus) {
+    this->modulus = modulus;
     for(auto it = nodes.cbegin(); it != nodes.cend(); it++)
         addNode(*it);
     for(auto it = edges.begin(); it != edges.end(); it++)
@@ -38,6 +41,7 @@ Graph::Graph(std::vector<node*>& nodes, std::vector<pair<node*, node*>>& edges) 
 Graph::Graph(const Graph& orig) {
     this->nodes = orig.nodes;
     this->edges = orig.edges;
+    this->modulus = orig.modulus;
 }
 
 
@@ -78,11 +82,11 @@ Graph* Graph::random() {
     
     int order = nrand(MAX_ORDER);
     
-    node* n = new node(nrand(MODULUS-1));
+    node* n = new node(nrand(result->modulus-1));
     result->addNode(n);
     
     for(int i = 0; i < order-1; i++) {
-        node* n = new node(nrand(MODULUS-1));
+        node* n = new node(nrand(result->modulus-1));
         result->connectNode(n);
     }
     
