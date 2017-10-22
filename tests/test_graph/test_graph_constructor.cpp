@@ -61,8 +61,8 @@ void test3() {
 
     auto it =  g.nodes.cbegin();
     for(int i = 0; i < 1000; i++, it++) {
-        if((*it)->value != i || (*++it)->value != 1000+i) {
-            cout << "%TEST_FAILED% time=0 testname=test3 (test_graph_constructor) message=constructor failed to correctly add nodes " << (*it)->id << " (2)" << endl;
+        if(it->second->value != i || (*++it).second->value != 1000+i) {
+            cout << "%TEST_FAILED% time=0 testname=test3 (test_graph_constructor) message=constructor failed to correctly add nodes " << it->second->id << " (2)" << endl;
             return;
         }
 
