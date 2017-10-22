@@ -34,8 +34,8 @@ edge::edge(const edge& orig) {
 }
 
 edge::~edge() {
-    free(this->first);
-    free(this->second);
+    delete this->first;
+    delete this->second;
 }
 
 size_t edge::hash(edge e) {
