@@ -42,7 +42,8 @@ Graph::Graph(const Graph& orig) {
 
 
 void Graph::addEdge(pair<node*, node*>& e) {
-    string edgeId = e.first->id+e.second->id;
+    string edgeId = e.first->id<e.second->id ? e.first->id+e.second->id 
+                                             : e.second->id+e.first->id;
     if(edges.find(edgeId) == edges.cend()) {
         addNode(e.first);
         addNode(e.second);
@@ -77,16 +78,29 @@ Graph* Graph::random() {
     
     int order = nrand(MAX_ORDER);
     
-    // Get number of edges
-    int edgeSetCardinality = nrand(order*(order-1)/2);
-    
-    
     node* n = new node(nrand(MODULUS-1));
     result->addNode(n);
     
     for(int i = 0; i < order-1; i++) {
         node* n = new node(nrand(MODULUS-1));
         result->connectNode(n);
+    }
+    
+    int max = int(result->nodes.size()-1);
+    // Get number of edges
+    int edgeSetCardinality = nrand(.5*order*(order-1));
+    while(result->edges.size() < edgeSetCardinality) {
+        int firstIndex = nrand(max);
+        int secondIndex;
+        do { secondIndex = nrand(max); }
+        while(firstIndex == secondIndex);
+        auto firstIt = result->nodes.begin();
+        auto secondIt = result->nodes.begin();
+        for(int i = 0; i < firstIndex && i << secondIndex; i++, firstIt++, secondIt++);
+        for(int i = 0; i < firstIndex; i++, firstIt++);
+        for(int i = 0; i < secondIndex; i++, secondIt++);
+        pair<node*, node*> e((firstIt->second).get(), (secondIt->second).get());
+        result->addEdge(e);
     }
     
     return result;
