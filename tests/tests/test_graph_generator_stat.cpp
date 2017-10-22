@@ -9,7 +9,7 @@
 #include <iostream>
 #include "../../graph/Graph.h"
 
-#define NUMBER_OF_TRIALS 10000
+#define NUMBER_OF_TRIALS 50
 
 using namespace std;
 
@@ -64,7 +64,21 @@ void test3() {
     cerr << "Average number of edges: " <<  mu << endl;
     cerr << "Expected value: " << expectedValue << endl << endl << endl;
     if(abs(mu-.25*MAX_ORDER*(MAX_ORDER-1))/(.25*MAX_ORDER*(MAX_ORDER-1)) > .1)
-        cout << "%TEST_FAILED% time=0 testname=test2 (test_graph_generator_stat) message=average size of graph edge set not close to expected value" << endl;
+        cout << "%TEST_FAILED% time=0 testname=test3 (test_graph_generator_stat) message=average size of graph edge set not close to expected value" << endl;
+
+}
+
+void test4() {
+    cout << "test_graph_generator_stat test 4" << endl;
+    
+    double mu = 0;
+    for(int i = 0; i < 100000; i++) 
+        mu+=Graph::nrand(10000001);
+    
+    mu/=100000;
+    
+    if(abs(mu-.5*10000001)/10000001 > .02)
+        cout << "%TEST_FAILED% time=0 testname=test4 (test_graph_generator_stat) message=average return of nrand(10000001) not close to expected value" << endl;
 
 }
 
@@ -94,6 +108,13 @@ int main(int argc, char** argv) {
     end = clock.now();
     dur = chrono::duration<double>(end-start);
     cout << "%TEST_FINISHED% time=" << dur.count() << " test3 (test_graph_generator_stat)" << endl;
+
+    start = clock.now();
+    cout << "%TEST_STARTED% test4 (test_graph_generator_stat)" << endl;
+    test4();
+    end = clock.now();
+    dur = chrono::duration<double>(end-start);
+    cout << "%TEST_FINISHED% time=" << dur.count() << " test4 (test_graph_generator_stat)" << endl;
 
     auto suiteEnd = clock.now();
     dur = chrono::duration<double>(suiteEnd-suiteStart);
