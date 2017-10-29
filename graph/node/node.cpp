@@ -95,9 +95,9 @@ node::size_type node::degree() {
 }
 
 void node::resetId() {
-    idChar1 = 0;
-    idChar2 = 0;
-    idChar3 = 0;
-    idChar4 = 0;
-    idChar5 = 0;
+    idChar1 = -1;
+    idChar2 =  0;
+    idChar3 =  0;
+    idChar4 =  0;
+    idChar5 =  0;
 }
