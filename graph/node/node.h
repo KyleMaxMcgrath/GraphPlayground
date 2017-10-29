@@ -43,7 +43,7 @@ public:
     
     int value;
     std::string id;
-    std::vector<std::shared_ptr<node>> neighbors;
+    std::vector<std::weak_ptr<node>> neighbors;
     
 private:
     std::string getId();
