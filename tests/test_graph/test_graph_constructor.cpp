@@ -72,8 +72,8 @@ void test3() {
     if(g.edges.size() != 1000)
         cout << "%TEST_FAILED% time=0 testname=test3 (test_graph_constructor) message=constructor failed to correctly add edges (1)" << endl;
     int i = 0;
-    for(auto it = g.edges.cbegin(); it != g.edges.cend(); it++, i++) {
-        if(*it == edges.at(i).first->id + edges.at(i).second->id) {
+    for(auto it = edges.cbegin(); it != edges.cend(); it++, i++) {
+        if(g.edges.find(edges.at(i).first->id + edges.at(i).second->id) == g.edges.cend()) {
             cout << "%TEST_FAILED% time=0 testname=test3 (test_graph_constructor) message=constructor failed to correctly add edges (2)" << endl;
             return;
         }
