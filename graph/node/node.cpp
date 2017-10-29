@@ -86,14 +86,6 @@ bool node::operator>=(const node& other) {
     return !(*this<other);
 }
 
-void node::connect(node& n){
-    this->neighbors.push_back(make_shared<node>(n));
-}
-
-void node::connect(node* n){
-    this->neighbors.push_back(shared_ptr<node>(n));
-}
-
 void node::connect(shared_ptr<node> n) {
     this->neighbors.push_back(weak_ptr<node>(n));
 }
