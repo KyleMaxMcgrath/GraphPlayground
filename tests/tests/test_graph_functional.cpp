@@ -190,6 +190,59 @@ void test7() {
     
 }
 
+void test8() {
+    
+    std::cout << "test_graph_functional test 8" << std::endl;
+    
+    node::resetId();
+    
+    Graph g;
+    
+    node* n0 = new node(3); 
+    node* n1 = new node(1); 
+    node* n2 = new node(4); 
+    node* n3 = new node(1); 
+    node* n4 = new node(5);
+    
+    pair<node*, node*> e0(n0, n1); pair<node*, node*> e1(n1, n2);
+    pair<node*, node*> e2(n2, n3); pair<node*, node*> e3(n3, n4);
+    pair<node*, node*> e4(n4, n0);
+    
+    g.addEdge(e0); g.addEdge(e1); g.addEdge(e2); g.addEdge(e3); g.addEdge(e4);
+    string result = "AAAAA ( 3): AAAAB ( 1)\n            AAAAE ( 5)\n            \nAAAAB ( 1): AAAAA ( 3)\n            AAAAC ( 4)\n            \nAAAAC ( 4): AAAAB ( 1)\n            AAAAD ( 1)\n            \nAAAAD ( 1): AAAAC ( 4)\n            AAAAE ( 5)\n            \nAAAAE ( 5): AAAAD ( 1)\n            AAAAA ( 3)\n            \n";
+    if(result != g.print())
+        std::cout << "%TEST_FAILED% time=0 testname=test8 (test_graph_functional) message=graph did not print correctly" << std::endl;
+    
+}
+
+void test9() {
+    
+    std::cout << "test_graph_functional test 9" << std::endl;
+    
+    Graph g;
+    
+    string result = "";
+    if(result != g.print())
+        std::cout << "%TEST_FAILED% time=0 testname=test9 (test_graph_functional) message=graph did not print correctly" << std::endl;
+    
+}
+
+void test10() {
+    
+    std::cout << "test_graph_functional test 10" << std::endl;
+    
+    Graph g;
+    
+    node* n = new node(0);
+    
+    g.addNode(n);
+    
+    string result = "AAAAA ( 0): \n\n";
+    if(result != g.print())
+        std::cout << "%TEST_FAILED% time=0 testname=test10 (test_graph_functional) message=graph did not print correctly" << std::endl;
+    cout << g.print();
+}
+
 int main(int argc, char** argv) {
     
     auto clock = chrono::steady_clock();
@@ -248,10 +301,30 @@ int main(int argc, char** argv) {
     dur = chrono::duration<double>(end-start);
     cout << "%TEST_FINISHED% time=" << dur.count() << " test7 (test_graph_functional)" << endl;
     
+    start = clock.now();
+    cout << "%TEST_STARTED% test8 (test_graph_functional)" << endl;
+    test8();
+    end = clock.now();
+    dur = chrono::duration<double>(end-start);
+    cout << "%TEST_FINISHED% time=" << dur.count() << " test8 (test_graph_functional)" << endl;
+        
+    start = clock.now();
+    cout << "%TEST_STARTED% test9 (test_graph_functional)" << endl;
+    test9();
+    end = clock.now();
+    dur = chrono::duration<double>(end-start);
+    cout << "%TEST_FINISHED% time=" << dur.count() << " test9 (test_graph_functional)" << endl;
+    
+    start = clock.now();
+    cout << "%TEST_STARTED% test10 (test_graph_functional)" << endl;
+    test10();
+    end = clock.now();
+    dur = chrono::duration<double>(end-start);
+    cout << "%TEST_FINISHED% time=" << dur.count() << " test10 (test_graph_functional)" << endl;
     
     auto suiteEnd = clock.now();
     auto suiteDur = chrono::duration<double>(suiteEnd-suiteStart);
-    std::cout << "%SUITE_FINISHED% time=" << dur.count() << std::endl;
+    std::cout << "%SUITE_FINISHED% time=" << suiteDur.count() << std::endl;
 
 
     return (EXIT_SUCCESS);
