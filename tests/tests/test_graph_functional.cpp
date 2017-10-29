@@ -242,7 +242,6 @@ void test10() {
     string result = "AAAAA ( 0): \n";
     if(result != g.print())
         std::cout << "%TEST_FAILED% time=0 testname=test10 (test_graph_functional) message=graph did not print correctly" << std::endl;
-    cout << g.print();
 }
 
 int main(int argc, char** argv) {
