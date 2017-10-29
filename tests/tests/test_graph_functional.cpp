@@ -229,6 +229,8 @@ void test9() {
 
 void test10() {
     
+    node::resetId(); 
+    
     std::cout << "test_graph_functional test 10" << std::endl;
     
     Graph g;
@@ -237,7 +239,7 @@ void test10() {
     
     g.addNode(n);
     
-    string result = "AAAAA ( 0): \n\n";
+    string result = "AAAAA ( 0): \n";
     if(result != g.print())
         std::cout << "%TEST_FAILED% time=0 testname=test10 (test_graph_functional) message=graph did not print correctly" << std::endl;
     cout << g.print();
