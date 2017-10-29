@@ -44,6 +44,38 @@ Graph::Graph(const Graph& orig) {
     this->modulus = orig.modulus;
 }
 
+string Graph::print() {
+    string result;
+    string space = "            ";
+    char * line = new char[12];
+    for(auto nodesIt = nodes.cbegin(); nodesIt != nodes.cend(); nodesIt++) {
+        snprintf(line, 12, "%5s (%2d):\n", nodesIt->second->id.c_str(), nodesIt->second->value);
+        result += line;
+        result += " ";
+        auto neighborsIt = nodesIt->second->neighbors.cbegin();
+        if(neighborsIt != nodesIt->second->neighbors.cend() && !neighborsIt->expired()) {
+            
+            snprintf(line, 12, "%5s (%2d)\n", neighborsIt->lock()->id.c_str(), neighborsIt->lock()->value);
+            result += line;
+            result += space;
+        }
+    if(neighborsIt == nodesIt->second->neighbors.cend()) {
+        result += "\n";
+        return result;
+    } else neighborsIt++;
+
+        for(; neighborsIt != nodesIt->second->neighbors.cend(); neighborsIt++)
+            if(!neighborsIt->expired()) {
+                snprintf(line, 12, "%5s (%2d)\n", neighborsIt->lock()->id.c_str(), neighborsIt->lock()->value);
+                result += line;
+                result += space;
+            }
+        result += "\n";
+    }
+    delete[] line;
+    return result;
+}
+    
 
 void Graph::addEdge(pair<node*, node*>& e) {
     string edgeId = e.first->id<e.second->id ? e.first->id+e.second->id 
