@@ -171,19 +171,19 @@ void test7() {
         std::cout << "%TEST_FAILED% time=0 testname=test7 (test_graph_functional) message=graph did not correctly add edges (3)" << std::endl;
         return;
     }
-    if(*n0->neighbors.at(0) != *n1 || *n0->neighbors.at(1) != *n4) {
+    if(*n0->neighbors.at(0).lock() != *n1 || *n0->neighbors.at(1).lock() != *n4) {
         std::cout << "%TEST_FAILED% time=0 testname=test7 (test_graph_functional) message=graph did not correctly add edges (4)" << std::endl;    
         return;   
     }
-    if(*n1->neighbors.at(0) != *n0 || *n1->neighbors.at(1) != *n3) {
+    if(*n1->neighbors.at(0).lock() != *n0 || *n1->neighbors.at(1).lock() != *n3) {
         std::cout << "%TEST_FAILED% time=0 testname=test7 (test_graph_functional) message=graph did not correctly add edges (5)" << std::endl;
         return;
     }
-    if(*n2->neighbors.at(0) != *n3) {
+    if(*n2->neighbors.at(0).lock() != *n3) {
         std::cout << "%TEST_FAILED% time=0 testname=test7 (test_graph_functional) message=graph did not correctly add edges (6)" << std::endl;
         return;
     }
-    if(*n4->neighbors.at(0) != *n0) {
+    if(*n4->neighbors.at(0).lock() != *n0) {
         std::cout << "%TEST_FAILED% time=0 testname=test7 (test_graph_functional) message=graph did not correctly add edges (7)" << std::endl;
         return;
     }
