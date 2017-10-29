@@ -43,6 +43,24 @@ public:
     
 private:
     int modulus;
+    
+    void addEdge(std::pair<std::shared_ptr<node>, std::shared_ptr<node>>& e) {
+        std::string edgeId = e.first->id<e.second->id ? e.first->id+e.second->id 
+                                                      : e.second->id+e.first->id;
+        if(edges.find(edgeId) == edges.cend()) {
+            addNode(e.first);
+            addNode(e.second);
+            e.first->connect(e.second);
+            e.second->connect(e.first);
+            this->edges.insert(edgeId);
+        }
+    };
+    
+    void addNode(std::shared_ptr<node> n) {
+        if(nodes.find(n->id) == nodes.cend())
+            this->nodes.emplace(n->id, n);
+    };
+
 };
 
 #endif /* GRAPH_H */

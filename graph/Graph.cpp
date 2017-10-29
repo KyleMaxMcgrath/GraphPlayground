@@ -103,7 +103,7 @@ Graph* Graph::random() {
         for(int i = 0; i < firstIndex && i << secondIndex; i++, firstIt++, secondIt++);
         for(int i = 0; i < firstIndex; i++, firstIt++);
         for(int i = 0; i < secondIndex; i++, secondIt++);
-        pair<node*, node*> e((firstIt->second).get(), (secondIt->second).get());
+        pair<shared_ptr<node>, shared_ptr<node>> e(firstIt->second, secondIt->second);
         result->addEdge(e);
     }
     
