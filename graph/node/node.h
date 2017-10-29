@@ -12,7 +12,7 @@
 #include <memory>
 #include <vector>
 
-#define FIRST_ID "BAAAA"
+#define FIRST_ID "AAAAA"
 
 class node {
     

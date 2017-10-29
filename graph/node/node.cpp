@@ -8,7 +8,7 @@
 #include "node.h"
 #include <iostream>
 
-static int idChar1 = 0;
+static int idChar1 = -1;
 static int idChar2 = 0;
 static int idChar3 = 0;
 static int idChar4 = 0;
