@@ -207,9 +207,9 @@ void test8() {
     pair<node*, node*> e0(n0, n1); pair<node*, node*> e1(n1, n2);
     pair<node*, node*> e2(n2, n3); pair<node*, node*> e3(n3, n4);
     pair<node*, node*> e4(n4, n0);
-    
     g.addEdge(e0); g.addEdge(e1); g.addEdge(e2); g.addEdge(e3); g.addEdge(e4);
-    string result = "AAAAA ( 3): AAAAB ( 1)\n            AAAAE ( 5)\n            \nAAAAB ( 1): AAAAA ( 3)\n            AAAAC ( 4)\n            \nAAAAC ( 4): AAAAB ( 1)\n            AAAAD ( 1)\n            \nAAAAD ( 1): AAAAC ( 4)\n            AAAAE ( 5)\n            \nAAAAE ( 5): AAAAD ( 1)\n            AAAAA ( 3)\n            \n";
+
+    string result = "    AAAAA: 3  <->     AAAAB: 1\n              <->     AAAAE: 5\n              \n    AAAAB: 1  <->     AAAAA: 3\n              <->     AAAAC: 4\n              \n    AAAAC: 4  <->     AAAAB: 1\n              <->     AAAAD: 1\n              \n    AAAAD: 1  <->     AAAAC: 4\n              <->     AAAAE: 5\n              \n    AAAAE: 5  <->     AAAAD: 1\n              <->     AAAAA: 3\n              \n";
     if(result != g.print())
         std::cout << "%TEST_FAILED% time=0 testname=test8 (test_graph_functional) message=graph did not print correctly" << std::endl;
     
@@ -238,8 +238,7 @@ void test10() {
     node* n = new node(0);
     
     g.addNode(n);
-    
-    string result = "AAAAA ( 0): \n";
+    string result = "    AAAAA: 0 \n";
     if(result != g.print())
         std::cout << "%TEST_FAILED% time=0 testname=test10 (test_graph_functional) message=graph did not print correctly" << std::endl;
 }
