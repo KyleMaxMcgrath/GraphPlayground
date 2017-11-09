@@ -27,7 +27,7 @@ public:
     Graph(const Graph& orig);
     virtual ~Graph(){};
     
-    std::string print();
+    std::string to_string();
     
     int getModulus() {
         return this->modulus;

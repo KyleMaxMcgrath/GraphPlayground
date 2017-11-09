@@ -44,7 +44,7 @@ Graph::Graph(const Graph& orig) {
     this->modulus = orig.modulus;
 }
 
-string Graph::print() {
+string Graph::to_string() {
     
     string result;
     string space = "              ";

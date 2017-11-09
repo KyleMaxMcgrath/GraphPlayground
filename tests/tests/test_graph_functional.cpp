@@ -210,7 +210,7 @@ void test8() {
     g.addEdge(e0); g.addEdge(e1); g.addEdge(e2); g.addEdge(e3); g.addEdge(e4);
 
     string result = "    AAAAA: 3  <->     AAAAB: 1\n              <->     AAAAE: 5\n              \n    AAAAB: 1  <->     AAAAA: 3\n              <->     AAAAC: 4\n              \n    AAAAC: 4  <->     AAAAB: 1\n              <->     AAAAD: 1\n              \n    AAAAD: 1  <->     AAAAC: 4\n              <->     AAAAE: 5\n              \n    AAAAE: 5  <->     AAAAD: 1\n              <->     AAAAA: 3\n              \n";
-    if(result != g.print())
+    if(result != g.to_string())
         std::cout << "%TEST_FAILED% time=0 testname=test8 (test_graph_functional) message=graph did not print correctly" << std::endl;
     
 }
@@ -222,7 +222,7 @@ void test9() {
     Graph g;
     
     string result = "";
-    if(result != g.print())
+    if(result != g.to_string())
         std::cout << "%TEST_FAILED% time=0 testname=test9 (test_graph_functional) message=graph did not print correctly" << std::endl;
     
 }
@@ -239,7 +239,7 @@ void test10() {
     
     g.addNode(n);
     string result = "    AAAAA: 0 \n";
-    if(result != g.print())
+    if(result != g.to_string())
         std::cout << "%TEST_FAILED% time=0 testname=test10 (test_graph_functional) message=graph did not print correctly" << std::endl;
 }
 
