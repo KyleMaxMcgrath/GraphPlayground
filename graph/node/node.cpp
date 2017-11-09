@@ -94,6 +94,15 @@ node::size_type node::degree() {
     return this->neighbors.size();
 }
 
+string node::to_string() {
+    
+    string result(this->id);
+    result += ": " + ::to_string(this->value);
+    
+    
+    return result;
+}
+
 void node::resetId() {
     idChar1 = -1;
     idChar2 =  0;

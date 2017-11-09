@@ -36,6 +36,7 @@ public:
     void connect(std::shared_ptr<node> n);
     node::size_type degree();
     
+    std::string to_string();
     
     static void resetId();
     
