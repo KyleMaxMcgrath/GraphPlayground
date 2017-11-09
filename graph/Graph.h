@@ -16,7 +16,7 @@
 #include <chrono>
 #include <map>
 
-#define MAX_ORDER 10
+#define MAX_ORDER 50
 
 class Graph {
 public:

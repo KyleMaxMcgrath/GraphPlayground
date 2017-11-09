@@ -45,28 +45,29 @@ Graph::Graph(const Graph& orig) {
 }
 
 string Graph::print() {
+    
     string result;
-    string space = "            ";
-    char * line = new char[12];
+    string space = "              ";
+    char * line = new char[19];
     for(auto nodesIt = nodes.cbegin(); nodesIt != nodes.cend(); nodesIt++) {
-        snprintf(line, 12, "%5s (%2d):\n", nodesIt->second->id.c_str(), nodesIt->second->value);
+        snprintf(line, 13, "%12s", nodesIt->second->to_string().c_str());
         result += line;
         result += " ";
         auto neighborsIt = nodesIt->second->neighbors.cbegin();
         if(neighborsIt != nodesIt->second->neighbors.cend() && !neighborsIt->expired()) {
             
-            snprintf(line, 12, "%5s (%2d)\n", neighborsIt->lock()->id.c_str(), neighborsIt->lock()->value);
+            snprintf(line, 19, " <-> %12s\n", neighborsIt->lock()->to_string().c_str());
             result += line;
             result += space;
         }
-    if(neighborsIt == nodesIt->second->neighbors.cend()) {
-        result += "\n";
-        return result;
-    } else neighborsIt++;
+        if(neighborsIt == nodesIt->second->neighbors.cend()) {
+            result += "\n";
+            return result;
+        } else neighborsIt++;
 
         for(; neighborsIt != nodesIt->second->neighbors.cend(); neighborsIt++)
             if(!neighborsIt->expired()) {
-                snprintf(line, 12, "%5s (%2d)\n", neighborsIt->lock()->id.c_str(), neighborsIt->lock()->value);
+                snprintf(line, 19, "<-> %12s\n", neighborsIt->lock()->to_string().c_str());
                 result += line;
                 result += space;
             }
